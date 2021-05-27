@@ -1,0 +1,10 @@
+{
+    "name": "tram/mvc",
+    "description": "Mô hình mvc",
+    "autoload": {
+        "psr-4": {
+            "Core\\" : "Core/",
+            "App\\" : "App/"
+        }
+    }
+}
