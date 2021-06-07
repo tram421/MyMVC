@@ -14,7 +14,8 @@ class Model extends DB
     {
         $query = $this->conn->query($sql);
         if ($query) return $query;
-        Die($this->conn->error);
+        // return false;
+        die($this->conn->error);
     }
 
     public function fetch($sql = '')
@@ -66,7 +67,7 @@ class Model extends DB
             $sqlArray .= " $key = '" . $value . "', ";
         }
         $sqlArray = substr(trim($sqlArray),0,-1);
-        echo "UPDATE $table set $sqlArray where id = $id";
+        // echo "UPDATE $table set $sqlArray where id = $id";
 
         return $this->query("UPDATE $table set $sqlArray where id = $id");
     }

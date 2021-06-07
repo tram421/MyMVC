@@ -6,12 +6,27 @@ $routes['admin/user/login/store']   = 'App\Controllers\Admin\LoginController@sto
 $routes['admin/main']               = 'App\Controllers\Admin\MainController@index';
 
 //Danh mục
-$routes['admin/menus/add']              = 'App\Controllers\Admin\MenuController@create';
-$routes['admin/menus/store']            = 'App\Controllers\Admin\MenuController@store';
-$routes['admin/menus/list']             = 'App\Controllers\Admin\MenuController@index';
-$routes['admin/menus/edit/{id}']        = 'App\Controllers\Admin\MenuController@edit';
-$routes['admin/menus/update/{id}']      = 'App\Controllers\Admin\MenuController@update';
-$routes['admin/menus/delete']           = 'App\Controllers\Admin\MenuController@destroy';
+$routes['admin/menus/add']                      = 'App\Controllers\Admin\MenuController@create';
+$routes['admin/menus/store']                    = 'App\Controllers\Admin\MenuController@store';
+$routes['admin/menus/list']                     = 'App\Controllers\Admin\MenuController@index';
+$routes['admin/menus/edit/{id}']                = 'App\Controllers\Admin\MenuController@edit';
+$routes['admin/menus/update/{id}']              = 'App\Controllers\Admin\MenuController@update';
+$routes['admin/menus/delete']                   = 'App\Controllers\Admin\MenuController@destroy';
+$routes['admin/menus/editActive/{id}/{stt}']    = 'App\Controllers\Admin\MenuController@editActive';
 
-#Product
+//upload
+$routes['admin/upload/add'] = 'App\Controllers\Admin\UploadController@store';
+$routes['admin/upload/add/{id}'] = 'App\Controllers\Admin\UploadController@store';
+
+
+//#Product
 $routes['admin/products/add'] = 'App\Controllers\Admin\ProductController@create';
+$routes['admin/products/store'] = 'App\Controllers\Admin\ProductController@store';
+$routes['admin/products/list'] = 'App\Controllers\Admin\ProductController@index';
+$routes['admin/products/editActive/{id}/{stt}'] = 'App\Controllers\Admin\ProductController@editActive';
+$routes['admin/products/edit/{id}'] = 'App\Controllers\Admin\ProductController@edit';
+$routes['admin/products/update'] = 'App\Controllers\Admin\ProductController@update';
+$routes['admin/products/trash'] = 'App\Controllers\Admin\ProductController@trash';
+$routes['admin/products/trashlist'] = 'App\Controllers\Admin\ProductController@trashlist';
+$routes['admin/products/destroy'] = 'App\Controllers\Admin\ProductController@destroy';
+$routes['admin/products/restock'] = 'App\Controllers\Admin\ProductController@restock';

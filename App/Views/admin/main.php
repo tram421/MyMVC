@@ -72,7 +72,7 @@
     <div class="content">
       <div class="container-fluid">
             <!-- Default box -->
-            <div class="card">
+            <div class="card"  style='overflow: hidden; !important'>
               <div class="card-header bg-info">
                 <h3 class="card-title"><?= $title ?></h3>
             </div>

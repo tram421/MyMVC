@@ -32,7 +32,7 @@ class Helper
                                 "<td>" . $value['id'] . "</td>".
                                 "<td>" . $symbol . $value['name'] . "</td>".
                                 "<td>" . $value['order_by'] . "</td>".
-                                "<td>" . $this->active($value['active']) . "</td>".
+                                "<td>" . $this->active($value['active'], $value['id'], '/admin/menus/editActive/' ) . "</td>".
                                 "<td>" . $value['updated_at'] . "</td>".
                                 "<td><a href = '/admin/menus/edit/". $value['id'] ."'><i class = 'far fa-edit'></i></a></td>".
                                 '<td><a href = "#" onclick = "deleteRow('.$value['id'].', \'/admin/menus/delete\')" ><i class = "far fa-trash-alt"></i></a></td>'.
@@ -43,15 +43,14 @@ class Helper
             
         }
         return $html;
-
     }
 
 
-    private function active($is_active = 0)
+    public static function active($is_active = 0, $id, $url = '')
     {
         return ($is_active == 0)
-        ? "<a href = '' ><button type='button' class='btn btn-block bg-gradient-secondary '>Không kích hoạt</button></a>"
-        : "<a href = '' ><button type='button' class='btn btn-block bg-gradient-success'>Kích hoạt</button></a>";
+        ? '<a href = "'.$url.$id.'/0 "><button id = "active" type="button"  class="btn btn-block bg-gradient-secondary ">Không kích hoạt</button></a>'
+        : '<a href = "'.$url.$id.'/1 "><button id = "active" type="button"  class="btn btn-block bg-gradient-success">Kích hoạt</button></a>';
     }
 
 

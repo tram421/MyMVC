@@ -54,8 +54,7 @@ class LoginController extends Controller
                 Helper::redirect('/admin/main');
             }
             Session::addFlash('error', 'Mật khẩu không chính xác');
-            return Helper::redirect('/admin/login');
-            
+            return Helper::redirect('/admin/login');            
             
         }
     }

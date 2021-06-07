@@ -7,6 +7,7 @@ class Helper
   public static function makeSafe($data = '')
     {
         $data = trim($data);
+        $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return addslashes($data);
     }
@@ -16,6 +17,7 @@ class Helper
         $data = htmlspecialchars_decode($data);
         return stripslashes($data);
     }
+   
 
   public static function redirect($url = '/')
   {

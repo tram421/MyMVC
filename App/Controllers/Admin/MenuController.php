@@ -108,15 +108,15 @@ class MenuController extends Auth
                 #Giữ lại các thông số vừa nhập thay vì dùng redirect
                 return  $this->reEdit($id, $dataSet);
             }
-            foreach ($menus as $key => $value) {
-                //trong cùng 1 danh mục cha thì kiểm tra trùng lặp
-                if ($value['parent_id'] == $dataSet['parent_id']) {
-                    if($value['name'] == $dataSet['name']) { //bị trùng tên trong cùng danh mục cha
-                        Session::addFlash('error', "Tên danh mục bị trùng trong cùng danh mục gốc");
-                        return $this->reEdit($id, $dataSet);
-                    }
-                }
-            }
+            // foreach ($menus as $key => $value) {
+            //     //trong cùng 1 danh mục cha thì kiểm tra trùng lặp
+            //     if ($value['parent_id'] == $dataSet['parent_id']) {
+            //         if($value['name'] == $dataSet['name']) { //bị trùng tên trong cùng danh mục cha
+            //             Session::addFlash('error', "Tên danh mục bị trùng trong cùng danh mục gốc");
+            //             return $this->reEdit($id, $dataSet);
+            //         }
+            //     }
+            // }
             $this->model->update($dataSet, $id);
             Session::addFlash('success', "Đã cập nhật thành công danh mục:".  $dataSet['name']);
             return Helper::redirect('/admin/menus/list');
@@ -157,5 +157,20 @@ class MenuController extends Auth
         return Helper::redirect('/admin/menus/list');
     }
         
-    
+    public function editActive($id = -1, $stt = -1)
+    {
+
+            if ($id == -1 || $stt == -1) {
+                Session::addFlash('error', "Không nhận được dữ liệu danh mục");
+                return Helper::redirect('/admin/menus/list');
+            }
+            $status = ($stt == 1) ? 0 : 1;
+            $data = ['active' => $status];
+            $this->model->update($data, $id);
+
+            Session::addFlash('success', 'Update thành công');
+            return Helper::redirect('/admin/menus/list');
+        
+
+    }
 }
