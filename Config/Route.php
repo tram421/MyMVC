@@ -30,3 +30,9 @@ $routes['admin/products/trash'] = 'App\Controllers\Admin\ProductController@trash
 $routes['admin/products/trashlist'] = 'App\Controllers\Admin\ProductController@trashlist';
 $routes['admin/products/destroy'] = 'App\Controllers\Admin\ProductController@destroy';
 $routes['admin/products/restock'] = 'App\Controllers\Admin\ProductController@restock';
+
+//Slide
+$routes['admin/slide'] = 'App\Controllers\Admin\SlideController@index';
+$routes['admin/slide/add'] = 'App\Controllers\Admin\SlideController@add';
+$routes['admin/slide/update'] = 'App\Controllers\Admin\SlideController@update';
+$routes['admin/slide/destroy'] = 'App\Controllers\Admin\SlideController@destroy';

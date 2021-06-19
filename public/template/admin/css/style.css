@@ -1,0 +1,9 @@
+/* Color */
+.bg-red , .bg-yellow > a{
+    background-color: rgb(151, 43, 0) !important;
+    color: white !important;
+}
+.bg-yellow{
+    background-color: rgb(202, 132, 2) !important;
+    color: white !important;
+}

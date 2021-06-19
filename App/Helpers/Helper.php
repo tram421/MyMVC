@@ -1,6 +1,9 @@
 <?php
 namespace App\Helpers;
 
+use Core\Model;
+use Core\Helper as CoreHelper;
+
 class Helper
 {
     private $stt = 0;
@@ -53,5 +56,46 @@ class Helper
         : '<a href = "'.$url.$id.'/1 "><button id = "active" type="button"  class="btn btn-block bg-gradient-success">Kích hoạt</button></a>';
     }
 
+    public static function menuAll()
+    {
+        $model = new Model;
+        $sql = "SELECT id, name, parent_id from menus where active = 1 order by order_by desc";
+        $menus = $model->fetchArray($sql);
 
+        return $menus;
+
+    }
+
+    public static function menuPublic($data, $parentId = 0)
+    {
+        $html = '';
+        // $html .= '<li>';
+        // $html .= '<a href="/" title = '. __PRODUCT_PAGE__ .'>' . __PRODUCT_PAGE__ . '</a>';
+        // $html .= '<ul>';
+        foreach($data as $key => $value) {
+            if ($value['parent_id'] == $parentId) {
+                $html .= '<li>';
+                $html .= '<a href="/danh-muc/'. CoreHelper::slug($value['name']) . '-id'. $value['id'] .'.html" 
+                                    title="' . $value['name'] . '">' . $value['name'] . '
+                            </a>';
+                if (self::isChild($data, $value['id'])) {
+                    $html .= '<ul class="sub-menu">';
+                    $html .= self::menuPublic($data, $value['id']);
+                    $html .= '</ul>';
+                }
+                $html .= '</li>';
+            }
+          
+        }
+        // $html .= '</ul></ul>';
+        return $html;
+    }
+
+    private static function isChild($menu, $id = 0)
+    {
+        foreach ($menu as $key) {
+            if ($key['parent_id'] == $id) return true;
+        }
+        return false;
+    }
 }

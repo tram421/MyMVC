@@ -78,7 +78,8 @@ class UploadController extends Auth
                 if (file_exists($pathFile)) {
                     $result = [
                         'error' => true,
-                        'message' => "File ảnh đã tồn tại"
+                        'message' => "File ảnh đã tồn tại",
+                        'url' => $pathFile
                     ];
                     $err = true;
                     
@@ -109,4 +110,6 @@ class UploadController extends Auth
         ]);
         
     }
+
+ 
 }

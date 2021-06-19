@@ -1,10 +1,21 @@
 <?php
 namespace App\Controllers;
 use Core\Controller;
-class MainController extends Controller{
+use App\Models\Menu;
+class MainController extends Controller
+{
+    private $menuModel;
+    public function __construct()
+    {
+        $this->menuModel = new Menu();
+    }
     public function index()
     {
-        $data = ['title' => "Trang main"];
-        $this->loadView('main', $data);
+        $menusData = $this->menuModel->get();
+        $this->loadView('main', [
+            'title' => __HOME_PAGE__,
+            'template' => "home",
+            'menusData' => $menusData
+            ]);
     }
 }

@@ -6,5 +6,9 @@
             "Core\\" : "Core/",
             "App\\" : "App/"
         }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.4",
+        "firebase/php-jwt": "^5.3"
     }
 }

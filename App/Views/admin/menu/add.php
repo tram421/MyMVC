@@ -29,10 +29,21 @@
             <label for=""> Mô tả ngắn </label>
             <textarea name = "description" class = "form-control"></textarea>
         </div>
-        <div class="form-group">
-            <label for="">Vị trí</label>
-            <input type = "number" name = "order_by" class = "form-control">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Vị trí</label>
+                    <input type = "number" name = "order_by" class = "form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Hình ảnh</label>
+                    <input type = "file" name = "image" class = "form-control">
+                </div>
+            </div>
         </div>
+        
         <div class="form-group">
             <div class="custom-control custom-radio">
                 <input class="custom-control-input" type="radio" id="customRadio1" name="active" checked = "" value = "1">

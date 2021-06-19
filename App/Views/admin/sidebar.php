@@ -84,6 +84,15 @@
              
             </ul>
           </li>
+          <!-- Slide -->
+          <li class="nav-item">
+            <a href="/admin/slide" class="nav-link">
+              <i class="nav-icon fas fa-images"></i>
+              <p>
+                Slide hình ảnh
+              </p>
+            </a>
+          </li>
           
         </ul>
       </nav>

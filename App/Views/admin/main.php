@@ -74,7 +74,7 @@
             <!-- Default box -->
             <div class="card"  style='overflow: hidden; !important'>
               <div class="card-header bg-info">
-                <h3 class="card-title"><?= $title ?></h3>
+                <h3 class="card-title"><?= mb_strtoupper($title, 'UTF-8');?></h3>
             </div>
               <?php include __VIEW__ . '/admin/'. $template . '.php'; ?>
             <!-- /.card -->
