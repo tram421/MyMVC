@@ -21,7 +21,9 @@
                         <th style="width: 50px">STT</th>
                         <th style="width: 50px">ID</th>
                         <th>Tên Sản Phẩm</th>
-                        <th style="width: 200px">Danh Mục</th>
+                        <th style="width: 100px">Danh Mục</th>
+                        <th style="width: 150px">Giá gốc</th>
+                        <th style="width: 150px">Giá giảm</th>
                         <th style="width: 100px">Hình Ảnh</th>
                         <th style="width: 150px">Trạng Thái</th>
                         <th style="width: 200px">Ngày Cập Nhật</th>
@@ -38,12 +40,20 @@
                     $i = 1;
                     
                     while ($row = $data->fetch_assoc()) {
+                        $menu = new App\Controllers\Admin\MenuController;
+                        $menu_name = $menu->get($row['menu_id']);
 
                         $html .= '<tr>';
                         $html .= '<td>' . $i++ . '</td>';
                         $html .= '<td>' . $row['id'] . '</td>';
                         $html .= '<td>' . $row['name'] . '</td>';
-                        $html .= '<td>' . $row['menu_id'] . '</td>';
+                        $html .= '<td>'; 
+                                    
+                        $html .=  $menu_name['name'];
+                                         
+                        $html .= '</td>';
+                        $html .= '<td>' . number_format($row['price'],0,'.',',') . ' đ</td>';
+                        $html .= '<td style="color: red">' . number_format($row['price_sale'],0,'.',',') . ' đ</td>';
                         $html .= '<td>' . '<img   style="width: 60px; height: 40px" src="'.$row['file'].'" alt="">' . '</td>';
                         $html .= '<td>' . App\Helpers\Helper::active($row['active'], $row['id'], '/admin/products/editActive/') . '</td>';
                         $html .= '<td>' . $row['updated_at'] . '</td>';

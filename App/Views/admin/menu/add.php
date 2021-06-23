@@ -39,7 +39,10 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Hình ảnh</label>
-                    <input type = "file" name = "image" class = "form-control">
+                    <input type = "file" name = "file" class = "form-control" id = 'file'>
+                    <div id="thumb">
+                    </div>
+                    <input type="hidden" name="image" value="" id="url_file">
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ function deleteRow(id = 0, url = "") {
 $('#file').change(function(){
   var formData = new FormData();
   formData.append('file', $(this)[0].files[0]);
-// if (confirm("Lỗi! " + ' Nhấn ok để vẫn tải lên')) {}
+if (confirm('Nhấn OK để tải lên')) {
   $.ajax({
       processData : false,
       contentType : false,
@@ -74,6 +74,7 @@ $('#file').change(function(){
          }
       }
   })
+}
 
 
 });
@@ -113,11 +114,11 @@ function upSimple()
             $("#url_file_repair").val("/" + result.url);
             const html = '<a href="/' + result.url + '" target="_blank"><img style = "width : 200px" src="/' + result.url + '" width="100px"></a>';
             $("#thumb1").html(html);
-            if (result.error == true) {
-              $("#thumb1").append("<p></p><span style = 'color : red'>Error: </span>");
+            if (result.error == true && result.message != "File ảnh đã tồn tại") {
+              $("#thumb1").append("<p></p><span style = 'color : red'>Error: " + result.message + "</span>");
             }
             if (result.message == 'File ảnh đã tồn tại') {
-              $("#thumb1").append("<span style = 'color : green'>This image already exist, so can't upload to folder, but you can use it to your slide</span>");
+              $("#thumb1").append("<span style = 'color : green'>This image already exist, so can't upload to folder, but you can use it to your work</span>");
             }
         }
       });

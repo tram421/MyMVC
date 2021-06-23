@@ -17,7 +17,8 @@ class UploadController extends Auth
             $path = getFolder();
 
             $err = false;
-            $fileName = basename($_FILES['file']['name']);
+            // $fileName = Core\Helper::makeSafe(basename($_FILES['file']['name']));
+            $fileName = (basename($_FILES['file']['name']));
             $result = [
                 'error' => false,
                 'message' => 'Thành công'

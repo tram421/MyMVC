@@ -1,6 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,900&display=swap');
 
-body, .main-menu > li > a{
-    font-family: 'Roboto', sans-serif !important;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+
+body, .main-menu > li > a, .ltext-101, .ltext-201{
+    font-family: 'Playfair Display', serif !important;
     font-weight: 700;
+}
+.small-img{
+    width: 100px;
+}
+a>span{
+    color:rgb(95, 95, 95) !important;
+}
+.sub-menu{
+    background-color: #e3e3e3;
+    border-radius: 10px;
+}
+.wrap-menu-desktop {
+    position: initial;
+}
+.fix-menu-desktop{
+    position: fixed;
+    z-index: 9;
+}
+.sub-menu{
+    z-index: 9;
+}
+.hidden-mobile{
+    visibility: visible;
+}
+.w-50{
+    width: 50% !important;
+}
+.color-red{
+    color:#a50505;
 }

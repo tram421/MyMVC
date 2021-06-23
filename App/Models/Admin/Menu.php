@@ -27,6 +27,7 @@ class Menu extends Model
         return $this->query("SELECT * from $this->table WHERE parent_id = $parent");
     }
 
+
     public function get()
     {
         return $this->fetchArray("SELECT * from $this->table");

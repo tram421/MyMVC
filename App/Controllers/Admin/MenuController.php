@@ -39,9 +39,10 @@ class MenuController extends Auth
             $data['description']    = isset($_POST['description']) ? Helper::makeSafe($_POST['description']) : '';
             $data['order_by']       = isset($_POST['order_by']) ? (int) $_POST['order_by'] : 0;
             $data['active']         = isset($_POST['active']) ? (int) $_POST['active'] : 0;
+            $data['image']          = isset($_POST['image']) ?  $_POST['image'] : '';
             $data['created_at']     = Helper::timeStamp();
             $data['updated_at']     = Helper::timeStamp();
-
+        
             $result = $this->model->insert($data);
             #kiểm tra trùng lặp
             if ($result === -1) {
@@ -96,6 +97,7 @@ class MenuController extends Auth
                 return Helper::redirect('/admin/menus/list');
             }
             $dataSet['name'] = isset($_POST['name']) ? Helper::makeSafe($_POST['name']) : '';
+            $dataSet['image'] = isset($_POST['file']) ? Helper::makeSafe($_POST['file']) : '';
             $dataSet['parent_id']      = isset($_POST['parent_id']) ? (int) $_POST['parent_id'] : 0;
             $dataSet['description']    = isset($_POST['description']) ? Helper::makeSafe($_POST['description']) : '';
             $dataSet['order_by']       = isset($_POST['order_by']) ? (int) $_POST['order_by'] : 0;
@@ -171,6 +173,11 @@ class MenuController extends Auth
             Session::addFlash('success', 'Update thành công');
             return Helper::redirect('/admin/menus/list');
         
+
+    }
+    public function get($id = 0)
+    {
+        return $this->model->show($id);
 
     }
 }

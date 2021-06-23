@@ -18,6 +18,7 @@ define('_PUBLIC_PATH_', $_SERVER['DOCUMENT_ROOT'] . 'public');
 (!defined('__ADD_ERROR__'))                 ? define('__ADD_ERROR__',               'LỖI thêm mới') : "";
 (!defined('__DATA_ERROR__'))                ? define('__DATA_ERROR__',              'LỖI dữ liệu') : "";
 (!defined('__ADD_POSITIVE_NUMBER__'))       ? define('__ADD_POSITIVE_NUMBER__',     'Vui lòng nhập số lớn hơn 0') : '';
+(!defined('__IMAGE__'))                     ? define('__IMAGE__',                   'Hình ảnh') : '';
 
 #title page Admin:
 (!defined('__ADD_PRODUCT_PAGE__'))          ? define('__ADD_PRODUCT_PAGE__',        'Thêm sản phẩm') : '';

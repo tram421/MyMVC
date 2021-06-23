@@ -15,7 +15,7 @@ class Model extends DB
         $query = $this->conn->query($sql);
         if ($query) return $query;
         // return false;
-        die($this->conn->error);
+        die($this->conn->error . ": " . $sql);
     }
 
     public function fetch($sql = '')

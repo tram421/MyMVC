@@ -8,6 +8,7 @@
                     <th style="width: 10px">STT</th>
                     <th style="width: 10px">id</th>
                     <th>Tên danh mục</th>
+                    <th>Hình ảnh</th>
                     <th style="width: 100px">Sắp Xếp</th>
                     <th style="width: 170px">Trạng Thái</th>
                     <th style="width: 200px">Ngày Cập Nhật</th>

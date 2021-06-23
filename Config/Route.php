@@ -1,5 +1,8 @@
 <?php
+//puclic
+$routes['danh-muc/{slug}-id{id}.html'] = 'App\Controllers\MenuController@index';
 
+//admin
 $routes['']                         = 'App\Controllers\MainController@index';
 $routes['admin/login']              = 'App\Controllers\Admin\LoginController@index';
 $routes['admin/user/login/store']   = 'App\Controllers\Admin\LoginController@store';

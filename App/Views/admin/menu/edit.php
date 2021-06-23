@@ -36,7 +36,14 @@
                     </div>
             </div>
         </div>
-        
+        <div class="form-group">
+            <label for=""><?= __IMAGE__ ?></label>
+            <input type = "file" name = "file_repair" value = "" class = "form-control" onchange = "upSimple()" id = "file_repair">
+            <div id="thumb1">
+                <img class = "m-2" style = "width : 200px" src="<?= Core\Helper::decodeSafe($data['image']) ?>">
+            </div>
+            <input type="hidden" name="file" value="" id="url_file_repair">
+        </div>
         <div class="form-group">
             <label for=""> Mô tả ngắn </label>
             <textarea name = "description" class = "form-control"><?= Core\Helper::decodeSafe($data['description']) ?></textarea>

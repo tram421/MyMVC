@@ -21,8 +21,6 @@ class Helper
         return $html;
     }
 
-
-
     public function menuShow($data, $parent = 0, $symbol = '')
     {
         //onclick="deleteRow(2, '/admin/menus/delete')"
@@ -34,6 +32,7 @@ class Helper
                                 "<td>" . $this->stt . "</td>".
                                 "<td>" . $value['id'] . "</td>".
                                 "<td>" . $symbol . $value['name'] . "</td>".
+                                "<td>" . $value['image'] . "</td>".
                                 "<td>" . $value['order_by'] . "</td>".
                                 "<td>" . $this->active($value['active'], $value['id'], '/admin/menus/editActive/' ) . "</td>".
                                 "<td>" . $value['updated_at'] . "</td>".
@@ -97,5 +96,15 @@ class Helper
             if ($key['parent_id'] == $id) return true;
         }
         return false;
+    }
+
+    public static function array_to_commaString($array)
+    {
+        $result = '';
+        foreach($array as $key=>$value) {
+            $result .= $value .',';
+        }
+        $result = substr($result,0,-1);
+        return $result;
     }
 }
