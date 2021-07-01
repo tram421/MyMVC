@@ -9,13 +9,16 @@ class Menu extends Model
     protected $table = 'menus';
     private $treeMenu = [];
     private $i = 0;
+    
     public function get($id = 0)
     {
         $sql = "SELECT id, name, image from $this->table where active = 1 && parent_id = $id order by order_by desc";
         return $this->query($sql);
     }
 
+    #Dùng đệ quy để lấy hết con của 1 id danh mục
     public function getChild($data = []) { 
+        #Điều kiện chẳng may rơi vào loop vô tận
        if($this->i < 500 && sizeof($data) > 0) {           
            $this->i = $this->i + 1;
            

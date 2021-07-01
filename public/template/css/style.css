@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
 
-body, .main-menu > li > a, .ltext-101, .ltext-201{
+body, .main-menu > li > a, .ltext-101, .ltext-201, .ltext-106{
     font-family: 'Playfair Display', serif !important;
     font-weight: 700;
 }
@@ -34,4 +34,11 @@ a>span{
 }
 .color-red{
     color:#a50505;
+}
+.color-black{
+    color:#292929 !important;
+}
+.text-light{
+    font-weight: lighter;
+    color: rgb(115, 115, 115) !important;
 }

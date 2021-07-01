@@ -18,6 +18,12 @@
                 <div class="form-group">
                     <label for="">Danh Mục</label>
                     <select name="menu_id" class="form-control">
+                    <option value = '<?=$data['menu_id']?>'>
+                        <?php 
+
+                            echo $data['menu_name'];
+                            
+                        ?></option>
                         <option value = '0'>Danh mục cha</option>
                         <?php  
                         
@@ -34,7 +40,7 @@
 
         <div class="form-group">
             <label for="">Mô Tả Ngắn</label>
-            <textarea name="description" class="form-control"><?= Core\Helper::decodeSafe($data['description']) ?></textarea>
+            <textarea name="content" class="form-control"><?= Core\Helper::decodeSafe($data['content']) ?></textarea>
         </div>
 
         <div class="row">
@@ -55,7 +61,7 @@
 
         <div class="form-group">
             <label for="">Chi Tiết Sản Phẩm</label>
-           <textarea name="content" id="content"><?= $data['content']?></textarea>
+           <textarea name="description" id="description"><?= Core\Helper::decodeSafe($data['description'])?></textarea>
         </div>
       
         <div class="form-group">

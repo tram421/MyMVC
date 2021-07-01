@@ -136,6 +136,7 @@ class ProductController extends Auth
     public function edit($id = 0)
     {
         $data = $this->model->show($id);
+        // $menuName = $this->menuModel->getname($idMenu);
         $this->loadView('/admin/main',[
             'title' => __EDIT_PRODUCT_PAGE__,
             'template' => '/product/edit',

@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <div id = "itemLoadMore" >
                     <div class="row isotope-grid">
 
                         <?php 
@@ -93,14 +93,16 @@
                                         
                                     ?>" alt="IMG-PRODUCT">
 
-                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                    <a onclick=" showMoreInfo(<?=$product['id']?>)" 
+                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
+                                        style = "cursor:pointer">
                                         Quick View
                                     </a>
                                 </div>
 
                                 <div class="block2-txt flex-w flex-t p-t-14">
                                     <div class="block2-txt-child1 flex-col-l ">
-                                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        <a href="/san-pham/<?= Core\Helper::slug($product['name']) . "-id" . $product['id'] ?>.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                             <?= $product['name'] ?>
                                         </a>
                                         <del class="stext-105 cl3">
@@ -120,23 +122,36 @@
                                 </div>
                             </div>
                         </div>
-
+                                        
                         <?php 
                             }
                         }
-                        ?>                    
+                        ?> 
+                        </div>
+                    <!-- <div id="productLoad"></div>                      -->
                 </div>
                 <!-- Load more -->
+                      
+			        <input type="hidden" value="1" id="page">
                     <div class="flex-c-m flex-w w-full p-t-45">
-                        <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                        <a onclick = "loadMoreProduct(<?=$product['menu_id']?>)" style = "cursor: pointer" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                             Load More
                         </a>
                     </div>
 	        </section>
         </div>
         <!-- aside -->
-        <?php include 'aside.php' ?>
+        <?php include __VIEW__.'/aside.php' ?>
     </div>
     
 
 </div>
+
+
+	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+		<div class="overlay-modal1 js-hide-modal1"></div>
+	<?php
+
+		include 'modal_product.php';
+	?>
+	</div>

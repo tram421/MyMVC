@@ -1,4 +1,4 @@
-<div class="sec-banner bg0 p-t-50 p-b-50">
+<div class="sec-banner bg0 p-t-5 p-b-5">
     <div class="container">
         <div class="row d-flex justify-content-start flex-wrap overflow-hidden text-center">
 

@@ -2,6 +2,24 @@
 //puclic
 $routes['danh-muc/{slug}-id{id}.html'] = 'App\Controllers\MenuController@index';
 
+//product
+$routes['services/product'] = 'App\Controllers\ProductController@loadmore';
+$routes['services/productmodal'] = 'App\Controllers\ProductController@loadModal';
+$routes['san-pham/{slug}-id{id}.html'] = 'App\Controllers\ProductController@showDetail';
+
+//user
+$routes['user/login'] = 'App\Controllers\UserController@login';
+$routes['user/check'] = 'App\Controllers\UserController@check';
+$routes['user/signUp'] = 'App\Controllers\UserController@signUp';
+$routes['user/create'] = 'App\Controllers\UserController@create';
+$routes['services/getDistrict'] = 'App\Controllers\UserController@getDistrict';
+$routes['services/getWard'] = 'App\Controllers\UserController@getWard';
+$routes['services/getStreet'] = 'App\Controllers\UserController@getStreet';
+$routes['user/send-mail'] = 'App\Controllers\UserController@sendMail';
+$routes['user/fail-email'] = 'App\Controllers\UserController@failEmail';
+$routes['user/success-email'] = 'App\Controllers\UserController@sendMailView';
+$routes['user/confirm/{token}.html'] = 'App\Controllers\UserController@registerSuccess';
+//--------------------------------------------------------------------------------------
 //admin
 $routes['']                         = 'App\Controllers\MainController@index';
 $routes['admin/login']              = 'App\Controllers\Admin\LoginController@index';

@@ -97,7 +97,10 @@ class Helper
         }
         return false;
     }
-
+/**
+ * because in sql sometimes we use syntax: select...from...where .. IN (a,b,c)
+ * this function will convert from array [1,2,3] to "a,b,c" for use sql sentence
+ */
     public static function array_to_commaString($array)
     {
         $result = '';

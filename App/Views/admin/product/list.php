@@ -34,9 +34,9 @@
                 <tbody>
                 
             <?php 
-                
+                $html = '';
                 if ($data->num_rows > 0) {
-                    $html = '';
+                    
                     $i = 1;
                     
                     while ($row = $data->fetch_assoc()) {

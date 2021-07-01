@@ -1,6 +1,7 @@
 <?php
 
 include __DIR__.'/myDefine/product.php';
+include __DIR__.'/myDefine/user.php';
 #Config DIR Public
 define('_PUBLIC_PATH_', $_SERVER['DOCUMENT_ROOT'] . 'public');
 
@@ -19,6 +20,9 @@ define('_PUBLIC_PATH_', $_SERVER['DOCUMENT_ROOT'] . 'public');
 (!defined('__DATA_ERROR__'))                ? define('__DATA_ERROR__',              'LỖI dữ liệu') : "";
 (!defined('__ADD_POSITIVE_NUMBER__'))       ? define('__ADD_POSITIVE_NUMBER__',     'Vui lòng nhập số lớn hơn 0') : '';
 (!defined('__IMAGE__'))                     ? define('__IMAGE__',                   'Hình ảnh') : '';
+(!defined('__CATEGORY__'))                  ? define('__CATEGORY__',                'Danh mục') : '';
+(!defined('__SIGN_IN__'))                   ? define('__SIGN_IN__',                  'Đăng ký') : '';
+(!defined('__RETURN_HOME_PAGE__'))          ? define('__RETURN_HOME_PAGE__',         'Trở về trang chủ') : '';
 
 #title page Admin:
 (!defined('__ADD_PRODUCT_PAGE__'))          ? define('__ADD_PRODUCT_PAGE__',        'Thêm sản phẩm') : '';
@@ -28,8 +32,9 @@ define('_PUBLIC_PATH_', $_SERVER['DOCUMENT_ROOT'] . 'public');
 (!defined('__SLIDE_PAGE__'))                ? define('__SLIDE_PAGE__',              'Quản lý slide') : '';
 
 #frontend:
-(!defined('__HOME_PAGE__'))             ? define('__HOME_PAGE__',       'Trang chủ') : '';
-(!defined('__PRODUCT_PAGE__'))          ? define('__PRODUCT_PAGE__',    'Sản phẩm') : '';
-(!defined('__CONTACT_PAGE__'))          ? define('__CONTACT_PAGE__',    'Liên hệ') : '';
-(!defined('__ABOUT_PAGE__'))            ? define('__ABOUT_PAGE__',      'Giới thiệu') : '';
+(!defined('__HOME_PAGE__'))             ? define('__HOME_PAGE__',               'Trang chủ') : '';
+(!defined('__PRODUCT_PAGE__'))          ? define('__PRODUCT_PAGE__',            'Sản phẩm') : '';
+(!defined('__CONTACT_PAGE__'))          ? define('__CONTACT_PAGE__',            'Liên hệ') : '';
+(!defined('__ABOUT_PAGE__'))            ? define('__ABOUT_PAGE__',              'Giới thiệu') : '';
+(!defined('__DETAIL_PRODUCT_PAGE__'))   ? define('__DETAIL_PRODUCT_PAGE__',     'Chi tiết sản phẩm') : '';
 

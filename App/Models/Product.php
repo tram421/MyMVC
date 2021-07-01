@@ -6,36 +6,48 @@ use App\Models\Menu;
 use App\Helpers\Helper;
 class Product extends Model
 {
+    const LIMIT = 8;
     private $table = 'products';
-    private $resultArray = [];
+    // private $resultArray = [];
     private $menu;
-
- public function get($id = 0)
+/**
+ * Function for get list product from choose catergory
+ * get product have menu_id and all product of child of that menu
+ * this function have selection: page to loadmore
+ * and to use it need send the id of menu_id
+ * param: id of menu, number page, orderBy (name field), and desc or asc
+ * result: array of products have menu_id and child
+ */
+ public function getChild($id = 0, $page = NULL, $orderBy = "id", $order = "asc")
  {
      $this->menu = new Menu;
-    //  $sql = "SELECT * from $this->table where menu_id = $id";
-    //  $this->resultArray = $this->fetchArray($sql);
+     #$data is Array because the getChild function use recursive to get id child of menu, so I use first data is a array
      $data = [(int)$id];
      $menu_id = $this->menu->getChild($data);     
     array_push($menu_id, $data[0]);
     $condition = Helper::array_to_commaString($menu_id);
-    
-    if(!is_null($menu_id)) {
-        $sql = "SELECT * from $this->table where menu_id IN ($condition)";
-        $result = $this->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                array_push($this->resultArray, $row);
-                
-            }
-
-            
-        }
-        
-        
-    }
    
+    if(!is_null($menu_id)) {
+        $sql = "SELECT * from $this->table where menu_id IN ($condition) order by $orderBy $order limit " . self::LIMIT;
+        
+        if ($page !== NULL) {
+            if($page > 0) {
+                $page--;
+                $offset = $page * self::LIMIT;
+                $sql .= " offset $offset";
+            }
+        }
+    }
     
-     return $this->resultArray;
- }   
+     return $this->fetchArray($sql);
+ }
+
+
+ public function get($id) {
+     $sql = "SELECT products.* , menus.name as menu_name 
+            from $this->table JOIN menus ON $this->table.menu_id = menus.id 
+            where $this->table.id = $id";
+     return $this->fetch($sql);
+ }
+ 
 }

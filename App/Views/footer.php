@@ -148,3 +148,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
+
+	<script src="/template/js/public.js"></script>
+	<script src="https://kit.fontawesome.com/f2395a37e3.js" crossorigin="anonymous"></script>

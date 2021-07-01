@@ -18,10 +18,12 @@ class MenuController extends Controller
     public function index($slug,$id)
     {
         $menusData = $this->menuModel->get($id);
-        $product = $this->product->get($id);
+        #getChild($id, $page)
+        $page = 1;
+        $product = $this->product->getChild($id,$page);
         $this->loadView('main', [
             'title' => __PRODUCT_PAGE__,
-            'template' => "product",
+            'template' => "product/product",
             'menusData' => $menusData,
             'product' => $product
             ]);

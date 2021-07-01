@@ -63,7 +63,7 @@ class Route
             if ($queryCount == $arrayRouteCount) { #Xử lý cùng số lượng cấp
 
                 #Tìm kiếm cú pháp {} => thay thế thành regex
-                $pregex = preg_replace('/{(.*?)}/i', '([a-zA-Z0-9\-]+)', $key); 
+                $pregex = preg_replace('/{(.*?)}/i', '([a-zA-Z0-9\-._]+)', $key); //thêm vào dấu . vì có trả về token
 
                 #Update cú pháp của regex
                 $pregexNew = "/" . str_replace("/", "\/", $pregex) . "/i";

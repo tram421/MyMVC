@@ -7,7 +7,7 @@
 
 
 <script src="/template/admin/ckeditor/ckeditor.js"></script>
-<script> CKEDITOR.replace('content');</script>
+<script> CKEDITOR.replace('description');</script>
 <script src="/template/admin/js/main.js"></script>
 
 
