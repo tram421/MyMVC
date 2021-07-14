@@ -75,15 +75,37 @@ function showMoreInfo(id)
         data : {id},
         url: '/services/productmodal',
         success: function(result){
+
             if (result.error == false) {
                 $("#modal_name").html(result.data.name);
                 $("#modal_price").html(result.data.price + ' đ');
                 $("#modal_price_sale").html(result.data.price_sale + " đ");
                 $("#modal_content").html(result.data.content);
+                $("#modal_id").val(id);
+
+                var file = result.data.file;
+
+                $.ajax({
+                  type: "POST",
+                  dataType: "JSON",
+                  data: { file },
+                  url: "/check/fileExist",
+                  success: function(res) {
+                    console.log(res);
+                    if (res.error == false) {
+                      $("#img-modal").attr("src", res.file);
+                    } else {
+                      $("#img-modal").attr("src", "/template/images/no-image.jpg");
+                    }
+                  }
+                });
+                
             }
         }
     });
-    // $("#modal_name").html('tram');
+
+    
+    
 
 }
 
@@ -129,15 +151,91 @@ function selectedDistrict(idDistrict)
 }
 
 
-function login()
+function login(email = '')
 {
-     $(".js-show-modal1").on("click", function(e) {
-       // e.preventDefault();
-       $(".js-modal1").addClass("show-modal1");
-     });
+    if (email != '') {
 
-     $(".js-hide-modal1").on("click", function() {
-       $(".js-modal1").removeClass("show-modal1");
-     });
-    console.log('Vào');
+        if (confirm("Bạn có chắc muốn đăng xuất?")) {
+            $.ajax({
+              type: "POST",
+              typeData: "JSON",
+              url: "/user/signOut",
+              success: function(result) {
+                if (result == 'success') {
+                    $("#signout-button").addClass('hidden');
+                    $("#signout-button").removeClass("show");
+                }
+              }
+            });
+        }
+    }
+}
+
+function changeQuantity(control = '', key = 0)
+{
+    var name1 = '#quantity-'+ key;
+    var size = parseInt($("#key").val());
+    var quantity = parseInt($('#quantity-'+ key).val());
+    var price = $("#price_item-" + key).val();
+    if (control == 'minus') {
+        if (quantity > 0) {
+            $("#quantity-"+ key).val(quantity - 1);
+            var priceOut = price * (quantity - 1); 
+        }
+    }
+    if (control == "plus") {
+        $('#quantity-'+ key).val(quantity + 1);
+        var priceOut = (price * (quantity + 1));    
+    }
+    var value = priceOut.toLocaleString(undefined,{ minimumFractionDigits: 0 });
+    $("#out-" + key).html(value + 'đ');
+    $("#outPrice-" + key).val(priceOut);
+    var total = 0;
+    
+    for (let i = 0; i < size; i++) {
+        if ($("#quantity-" + i)[0] != null) {
+            total += parseInt($("#quantity-" + i).val()) * parseInt($("#price_item-" + i).val());
+        }
+        
+    }
+    $("#outTotal").val(total);
+    var total = total.toLocaleString(undefined,{ minimumFractionDigits: 0 });
+
+    $("#subTotal").html(total + ' đ') ;
+    
+    $("#total").html(total + " đ + Ship");
+}
+function deleteItemCart(id = 0)
+{
+    var size = parseInt($("#key").val());
+    var total = 0;
+    for (let i = 0; i < size; i++) {
+        if ($("#quantity-" + i)[0] != null) {
+            total += parseInt($("#quantity-" + i).val()) * parseInt($("#price_item-" + i).val());
+        }      
+    }   
+    var cost = $("#row-" + id + " .cost").val();
+  
+    var allTotal = (total-cost).toLocaleString(undefined, {minimumFractionDigits:0});
+    $.ajax({
+        type:'POST',
+        typeData: 'JSON',
+        url: "/cart/delete",
+        data : {id},
+        success : function(result){
+            if (result.error == false) {
+                $('#row-'+id).remove();
+                $("#row-d-" + id).remove();
+                let count = $("#countItem").attr("data-notify");
+                $("#countItem").attr("data-notify", count-1);   
+                $("#subTotal").html(allTotal + " đ"); 
+                $("#total").html(allTotal + " đ + Ship");           
+                location.reload();
+            }
+        }
+    });
+}
+function updateCart()
+{
+    
 }

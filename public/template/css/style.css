@@ -29,9 +29,40 @@ a>span{
 .hidden-mobile{
     visibility: visible;
 }
+/* size */
+.w-10{
+    width: 10% !important;
+}
+.w-20{
+    width: 20% !important;
+}
+.w-40{
+    width: 40% !important;
+}
 .w-50{
     width: 50% !important;
 }
+.w-60{
+    width: 60% !important;
+}
+.w-100{
+    width: 100% !important;
+}
+/* popup */
+.w-maxcontent{
+    width: max-content;
+    display: block;
+}
+.hover-red:hover{
+    color:rgb(124, 1, 11) !important; 
+}
+.hover-green:hover{
+    color:rgb(1, 104, 44) !important; 
+}
+.hover-yellow-bg:hover{
+    background-color: #7fcce44b !important;
+}
+/* text */
 .color-red{
     color:#a50505;
 }
@@ -42,3 +73,37 @@ a>span{
     font-weight: lighter;
     color: rgb(115, 115, 115) !important;
 }
+.text-thin{
+    font-weight: lighter;
+}
+
+.hidden{
+    visibility: hidden;
+    display: none;
+}
+.show{
+    visibility: visible;
+    display: block;
+}
+/* button minus and plus */
+.button-minus, .button-plus{
+    width: 45px;
+    height: 100%;
+    cursor: pointer;
+}
+.mp-0{
+    padding : 0 !important;
+    margin :0 !important;
+}
+.pr-10{
+    padding-right: 10px !important;
+}
+/* table */
+.table{
+    width: 100%;
+    border:1px solid black;
+    overflow-x: auto;
+    display: block;
+}
+
+

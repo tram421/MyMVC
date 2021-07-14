@@ -149,5 +149,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 
+	
+
+
+</body>
 	<script src="/template/js/public.js"></script>
-	<script src="https://kit.fontawesome.com/f2395a37e3.js" crossorigin="anonymous"></script>
+	<!-- <script src="/template/js/solid.min.js" crossorigin="anonymous"></script> -->
+	<!-- <script defer src="/template/js/solid.js"></script>  -->

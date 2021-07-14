@@ -59,8 +59,8 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Đã gửi thư xác minh đến hộp thư của bạn</h1>
-        <p class="lead text-muted">Vui lòng kiểm tra email và nhấn vào nút xác nhận.</p>
+        <h1 class="fw-light">Đã gửi thư xác nhận đặt hàng đến hộp thư của bạn</h1>
+        <p class="lead text-muted">Vui lòng kiểm tra email và kiểm tra thông tin đặt hàng</p>
         <p>
           <a href="/" class="btn btn-primary my-2"><?=__RETURN_HOME_PAGE__?></a>
         </p>

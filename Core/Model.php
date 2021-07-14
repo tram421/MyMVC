@@ -17,6 +17,14 @@ class Model extends DB
         // return false;
         die($this->conn->error . ": " . $sql);
     }
+    
+     public function query_getID($sql = '')
+    {
+        $query = $this->conn->query($sql);
+        if ($query) return $this->conn->insert_id;
+        // return false;
+        die($this->conn->error . ": " . $sql);
+    }
 
     public function fetch($sql = '')
     {

@@ -25,8 +25,8 @@
             </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <button type="submit" class="btn btn-info float-right m-b-10">Log in</button>
-            <a href="/user/signUp" class="btn btn-warning float-right m-b-10 m-r-20">Sign up</a>
+            <a href="/user/signUp" class="btn btn-warning float-right m-b-10">Sign up</a>
+            <button type="submit" class="btn btn-info float-right m-b-10 m-r-20">Log in</button>
         </div>
         <!-- /.card-footer -->
         </form>

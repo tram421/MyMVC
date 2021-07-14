@@ -44,9 +44,10 @@ class Product extends Model
 
 
  public function get($id) {
-     $sql = "SELECT products.* , menus.name as menu_name 
+     $sql = "SELECT products.* , menus.name as menu_name, menus.id as menu_id, products.name as products_name
             from $this->table JOIN menus ON $this->table.menu_id = menus.id 
             where $this->table.id = $id";
+            
      return $this->fetch($sql);
  }
  

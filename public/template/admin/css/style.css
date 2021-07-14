@@ -7,3 +7,11 @@
     background-color: rgb(202, 132, 2) !important;
     color: white !important;
 }
+
+.hide{
+    visibility: hidden;
+    display: none;
+}
+.show{
+    visibility: visible;
+}

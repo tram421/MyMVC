@@ -1,7 +1,4 @@
 
-
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -58,9 +55,42 @@
 
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Đã gửi thư xác minh đến hộp thư của bạn</h1>
-        <p class="lead text-muted">Vui lòng kiểm tra email và nhấn vào nút xác nhận.</p>
+      <div class="col-lg-6 col-md-8 mx-auto table-responsive">
+        <h1 class="fw-light">Bạn đã đặt hàng thành công</h1>
+        <p>Mã số đơn hàng:  MKL-<?= $id ?></p>
+        <table class ="table m-tb-20">
+            <?php 
+                $html = '';
+                $html .= '<thead class = "">
+                            <tr class = "">
+                                <th  class = "">STT</th>
+                                <th  class = "">Tên sản phẩm</th>  
+                                <th  class = "">Số lượng</th>                                
+                                <th  class = "">Đơn giá</th>
+                                <th  class = "">Giá</th>
+                            </tr>
+                        </thead>';
+                $html .= '<tbody class = "col-12">';
+                $html .= '<tr>';
+                
+                $total = 0;
+                foreach($listProduct as $key => $value) {     
+                    $cost = (int)$value['quantity'] * (int)$value['price_sale'];     
+                    $total += $cost;  
+                          
+                    $html .= '<td>' . ++$key.'</td>';                      
+                    $html .= '<td>' . $value['name'].'</td>';
+                    $html .= '<td>' . $value['quantity'].'</td>';    
+                    $html .= '<td>' . number_format($value['price_sale'], 0, '.', ',').' đ</td>';  
+                    $html .= '<td>' . number_format($cost, 0, '.', ',') . ' đ</td>';
+                    $html .= '<tr>';
+                }
+                $html .= '</tbody>';
+                echo $html;
+            ?>
+        </table>
+        <p class="text-left m-tb-20">Tổng cộng: <?= number_format($total, 0, '.', ',') ?> đ</p>
+        <p class="lead text-muted">Nhân viên sẽ gọi điện xác nhận cho quí khách để thông báo phí vận chuyển và xác nhận đơn hàng, xin quí khách giữ điện thoại bên mình</p>
         <p>
           <a href="/" class="btn btn-primary my-2"><?=__RETURN_HOME_PAGE__?></a>
         </p>

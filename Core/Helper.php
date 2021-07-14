@@ -21,7 +21,15 @@ class Helper
 
   public static function redirect($url = '/')
   {
+    
     header('Location: '. $url);
+    
+  }
+  public static function reload()
+  {
+    $pattern = preg_replace('/\//i', '\/', $_SERVER['HTTP_ORIGIN']);
+    $linkReturn = preg_replace('/'.$pattern.'/', '',$_SERVER['HTTP_REFERER'] );
+    header('Location: '. $linkReturn);
   }
   public static function timeStamp()
   {

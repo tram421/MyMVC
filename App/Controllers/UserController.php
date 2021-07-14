@@ -12,7 +12,7 @@ use Core\Helper;
 class UserController extends Controller
 {
     private $user;
-    
+    private $timeCookie = __TIME_COOKIE__;
     
     public function __construct()
     {
@@ -22,14 +22,12 @@ class UserController extends Controller
 
     public function login()
     {
-        
-        
         if (isset($_COOKIE['username'])) {
             
            
             $result = $this->user->get($_COOKIE['username']);
             if(is_null($result)) {
-                setcookie("username", "", time() - 3600,'/');
+                setcookie("username", "", time() - __TIME_COOKIE__,'/');
                 return Helper::redirect('/user/login');
             } else {
                 return Helper::redirect('/');
@@ -42,9 +40,37 @@ class UserController extends Controller
         ]);
     }
 
-    public function check()
+    public function SignOut()
     {
-        
+        setcookie("username", "", time() - __TIME_COOKIE__,'/');
+        if(isset($_SESSION['carts'])) unset($_SESSION['carts']);
+        // return Helper::reload();
+        return json('success');
+    }
+     public function show($email = '')
+    {
+        $result = $this->user->get($email);
+        if (!is_null($result)) {
+            return $result;
+        }
+        return NULL;
+    }
+    public function getID($email = '')
+    {
+        $result = $this->user->get($email);
+        if (!is_null($result)) {
+            return $result['id'];
+        }
+        return NULL;
+    }
+    public function check($checkEmail = '')
+    {
+        if ($checkEmail != '') {
+            $result = $this->user->get($checkEmail);
+            if (is_null($result)) {
+                return json('success');
+            }
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = (isset($_POST['email'])) ? $_POST['email'] : '';
             if ($email == '') {
@@ -64,9 +90,9 @@ class UserController extends Controller
                 Session::addFlash('error', 'Mật khẩu không đúng');
                 return Helper::redirect('/user/login');
             }
-
-            setcookie('username', $email, time() + 30, '/');
-            setcookie('password', $result["password"], time() + 30, '/');
+            if(isset($_SESSION['carts'])) unset($_SESSION['carts']);
+            setcookie('username', $email, time() + __TIME_COOKIE__, '/');
+            setcookie('password', $result["password"], time() + __TIME_COOKIE__, '/');
             return Helper::redirect('/user/login');
             
         }
@@ -249,8 +275,8 @@ class UserController extends Controller
             $key = __TOKEN;
             $confirmCode = JWT::decode($token, $key, array('HS256'));
             $this->user->create($confirmCode->email, $confirmCode->password, $confirmCode->address, $confirmCode->phone);
-            setcookie('username', $confirmCode->email, time() + 10, '/');
-            setcookie('password', $confirmCode->password, time() + 10, '/');
+            setcookie('username', $confirmCode->email, time() + __TIME_COOKIE__, '/');
+            setcookie('password', $confirmCode->password, time() + __TIME_COOKIE__, '/');
             // echo 'Thành công';
             \Core\Helper::redirect('/user/login');
         } catch (\Throwable $th) {

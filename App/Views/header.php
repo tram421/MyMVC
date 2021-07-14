@@ -71,12 +71,24 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+						<div id="countItem" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php
+								echo App\Controllers\CartController::countItem();
+
+						?>
+						">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
-						<div class="cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti color-black">
-							<a href="/user/login" class="color-black" onclick = "login()"><i class="fas fa-user "></i></a>
-							<div class="d-flex js-hide-modal1 show-modal1">đâsda</div>
+						<div class="cl2 hov-cl1 trans-04 p-l-22 p-r-11 color-black col-1 js-show-login pointer" >
+							<a href="/user/login" class="color-black"><i class="fas fa-user "></i></a>
+							<!-- <i class="fas fa-user "></i> -->
+							<div class="w-maxcontent hover-red 
+								<?php 
+									if (isset($_COOKIE['username'])) {
+									echo 'show';
+									} else {echo 'hidden';
+									}
+								?>" id='signout-button' onclick="login('<?php if (isset($_COOKIE['username'])) echo $_COOKIE['username'] ?>')">Đăng xuất</div>
+							
 						</div>
 
 						<!-- <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">

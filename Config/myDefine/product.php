@@ -14,3 +14,4 @@ if (!function_exists('ADD_TO_TRASH_SUCCESS'))
 (!defined('__NAME_DESCRIPTION_IMAGE_NULL__'))   ? define('__NAME_DESCRIPTION_IMAGE_NULL__', 'Tên, chi tiết sản phẩm và hình ảnh không được trống') : '';
 (!defined('__MORE_INFORMATION__'))              ? define('__MORE_INFORMATION__',            'Thông số kỹ thuật') : '';
 (!defined('__RELATED_PRODUCTS__'))              ? define('__RELATED_PRODUCTS__',            'Sản phẩm tương tự') : '';
+(!defined('__ADD_TO_CART__'))                   ? define('__ADD_TO_CART__',                 'Thêm vào giỏ hàng') : '';

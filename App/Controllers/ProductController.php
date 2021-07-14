@@ -12,6 +12,12 @@ class ProductController extends Controller
         $this->model = new Product;
     }
 
+    public function get($id)
+    {
+        $result = $this->model->get($id);
+        return $result;
+    }
+
     public function loadmore()
     {
         $this->model = new Product;
@@ -48,6 +54,7 @@ class ProductController extends Controller
 
             if ($id != 0) {
                 $result = $this->model->get($id);
+                // dd($result);
                 return json([
                         'error' => false,
                         'data' => $result

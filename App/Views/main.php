@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- <html lang="en"> -->
 <head>
     <?php include 'head.php'; ?>
 </head>
@@ -9,7 +9,7 @@
 	<!-- header -->
 	<?php include 'header.php'; ?>
 	<!-- Cart -->
-	<?php include 'cart.php'; ?>
+	<?php include 'cart/cart.php'; ?>
 	<!-- template -->
 	<?php include __VIEW__ .'/'. $template .'.php'; ?>
 

@@ -2,6 +2,7 @@
 
 include __DIR__.'/myDefine/product.php';
 include __DIR__.'/myDefine/user.php';
+include __DIR__.'/myDefine/cart.php';
 #Config DIR Public
 define('_PUBLIC_PATH_', $_SERVER['DOCUMENT_ROOT'] . 'public');
 

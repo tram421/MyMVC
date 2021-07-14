@@ -200,6 +200,129 @@ function addSlideForm()
   }
   
 }
+    /*
+id	"40"
+name	"Nguyễn Hoàng Mai Trâm"
+receiver_name	"Nguyễn Hoàng Mai Trâm"
+receiver_phone	"0123456789"
+receiver_address	"5A, Phó Cơ Điều, Phường 8, Thành phố Vĩnh Long, Vĩnh Long"
+state	"create"
+created_at	"2021-07-13 18:30:37"
+quantity	"5"
+product_id	"8"
+product_name	"Tivi Samsung 2"
+product_price	"9000000"
+product_sale	"7990000"
+product_file	"/uploads/2021/05/31/tv02.jpg"
+category_name	"Tivi SamSung"
+     */
+function showOrderDetail(id = 0) {
+   $("#show-item-" + id).removeClass("hide");
+  $('#show-item-'+id).addClass('show');
+  $.ajax({
+    
+      type : 'POST',
+      dataType : 'JSON',
+      url : '/admin/order/getInfo',
+      data : {id},
+      success: function(result){
+        
+        let html = '';
+        html += "<div class='row'>";
+        html += "<div class='col-4'>";
+        html += "<h4>Thông tin tài khoản</h4>";
+        if (result[0].idUser != 0) {
+          html += "<h6> <strong>ID: </strong>" + result[0].idUser + "</h6>";
+          html += "<h6> <strong>Email: </strong>" + result[0].email + "</h6>";
+          html += "<h6> <strong>Tên tài khoản: </strong>" + result[0].name + "</h6>";
+          html += "<h6> <strong>ĐT: </strong>" + result[0].phone + "</h6>";
+          html += "<h6> <strong>Địa chỉ: </strong>" + result[0].address + "</h6>";
+        } else {
+          html += "<h6>" + "Khách hàng chưa đăng kí"+ "</h6>";
+          
+        }
+        html += "</div>";
+        html += "<div class='col-8'>";
+        html += "<table class='table'>"+
+                  "<thead>" +
+                  "<tr>"+
+                  "<td style='max-width:50px'><b>STT</b></td>"+
+                  "<td style='max-width:50px'><b>ID</b></td>"+
+                  "<td style='min-width:200px'><b>Tên</b></td>"+
+                  "<td><b>Hình ảnh</b></td>"+
+                  "<td style='max-width:60px'><b>Số lượng</b></td>"+
+                  "<td><b>Đơn giá</b></td>"+
+                  "<td><b>Thành tiền</b></td>"+
+                  "</tr>"+                  
+                  "</thead>";
+         html += "<tbody>"
+             
+        for (let key in result) {
+          html += "<tr>"; 
+          let data = result[key];
+            html += "<td>"+ ++key +"</td>";
+            html += "<td>" + data.product_id + "</td>";
+            html += "<td>" + data.product_name + "</td>";
+            html += "<td><img  style='width:50px' src='" + data.product_file + "'</td>";
+            html += "<td>" + data.quantity + "</td>";
+            let price_sale = parseInt(data.product_sale);
+            price_sale = price_sale.toLocaleString(undefined,{
+                minimumFractionDigits: 0
+              });
+            html += "<td>" + price_sale + "đ</td>";
+            let cost = data.product_sale * data.quantity;
+            cost = cost.toLocaleString(undefined, {
+              minimumFractionDigits: 0
+            });
+            html += "<td>" + cost + "đ</td>";
+            html += "</tr>";
+        }
+        
+        html += "</tbody>"; 
+        html += "</table>";
+        html += "</div>";
+        
+        $("#show-info-"+id).html(html);
+      }
+
+    
+  });
+
+}
+function closeOrderDetail(id=0)
+{
+   $("#show-item-" + id).removeClass("show");
+   $("#show-item-" + id).addClass("hide");
+}
+function addShipCost(id = 0)
+{
+  let value = $("#shipcost-"+id).val();
+  let cost = $("#cost-" + id).val();
+  value = parseInt(value);
+  cost = parseInt(cost);
+  
+  if (isNaN(value) == true) {
+    alert("Vui lòng nhập số");
+  } else {
+    var total = cost + value;
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: '/admin/order/storeShipCost',
+      data:{id, value, total},
+      success: function(result){
+        if (result == 'success') {
+          location.reload();
+        }
+        
+      }
+    });
+  }
+ 
+  // value = parseInt(value);
+  // console.log(value);
+}
+
 
 
 
