@@ -42,14 +42,6 @@ class Order extends Model
     
     public function getOrders()
     {
-        // $sql = "SELECT $this->table.id, $this->table.name, $this->table.name as receiver_name, $this->table.phone as receiver_phone, $this->table.address as receiver_address,
-        //         $this->table.state, $this->table.created_at,
-        //         products_order.quantity, products.id as product_id, products.name as product_name, products.price as product_price, products.price_sale as product_sale, products.file as product_file,
-        //         menus.name as category_name 
-        //         From $this->table JOIN products_order ON $this->table.id = products_order.order_id
-        //         JOIN products ON products_order.id_product = products.id
-        //         JOIN menus ON products.menu_id = menus.id
-        //         WHERE $this->table.is_delete IS NULL";
         $sql = "SELECT *
                 From $this->table 
                 WHERE $this->table.is_delete IS NULL";

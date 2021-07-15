@@ -354,6 +354,7 @@ class CartController extends Controller
            
             $result = $Order_model->add_products($keyProduct, $id_order);
             $result = $this->cart->delete_byUser($inforMember['id']);
+            unset($_SESSION['carts']);
 
             if ($inforMember['email'] != NULL) {
                 $mail = new \App\Controllers\Mail;

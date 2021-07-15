@@ -71,6 +71,10 @@ $routes['admin/slide/update'] = 'App\Controllers\Admin\SlideController@update';
 $routes['admin/slide/destroy'] = 'App\Controllers\Admin\SlideController@destroy';
 
 //order
-$routes['admin/orders/manage'] = 'App\Controllers\Admin\OrderController@list';
+$routes['admin/orders/manage/{tab}'] = 'App\Controllers\Admin\OrderController@list';
+$routes['admin/orders/manage/completeOrder'] = 'App\Controllers\Admin\OrderController@completeOrder';
 $routes['admin/order/getInfo'] = 'App\Controllers\Admin\OrderController@getInfo';
 $routes['admin/order/storeShipCost'] = 'App\Controllers\Admin\OrderController@storeShipCost';
+$routes['admin/order/setState'] = 'App\Controllers\Admin\OrderController@setState';
+$routes['admin/order/delete'] = 'App\Controllers\Admin\OrderController@delete';
+$routes['admin/orders/trash'] = 'App\Controllers\Admin\OrderController@trash';

@@ -58,6 +58,7 @@ if (!function_exists('page')) {
         }
         $html .= '<li class="page-item"><a class="page-link" href="'. '?page=' . $sumpage .'">Cuối</a></li>';
         $html .= '</ul>';
+        
         return $html;
     }
 }

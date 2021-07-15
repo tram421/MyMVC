@@ -296,31 +296,72 @@ function closeOrderDetail(id=0)
 }
 function addShipCost(id = 0)
 {
-  let value = $("#shipcost-"+id).val();
-  let cost = $("#cost-" + id).val();
-  value = parseInt(value);
-  cost = parseInt(cost);
-  
-  if (isNaN(value) == true) {
-    alert("Vui lòng nhập số");
-  } else {
-    var total = cost + value;
-    $.ajax({
-      type: 'POST',
-      dataType: 'JSON',
-      url: '/admin/order/storeShipCost',
-      data:{id, value, total},
-      success: function(result){
-        if (result == 'success') {
-          location.reload();
+  if (confirm('Bạn có chắc chắn về phí ship của đơn hàng này không?')) {
+    let value = $("#shipcost-" + id).val();
+    let cost = $("#cost-" + id).val();
+    value = parseInt(value);
+    cost = parseInt(cost);
+
+    if (isNaN(value) == true) {
+      alert("Vui lòng nhập số");
+    } else {
+      var total = cost + value;
+      $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: "/admin/order/storeShipCost",
+        data: { id, value, total },
+        success: function(result) {
+          if (result == "success") {
+            location.reload();
+          }
         }
-        
-      }
-    });
+      });
+    }
   }
+  
  
   // value = parseInt(value);
   // console.log(value);
+}
+
+function setState(state = '', id = 0, ship = 0)
+{
+  // console.log(state);
+  if(ship == 0 && state == 'confirmed') {
+    return alert("Không thể xác nhận đơn hàng khi chưa có phí ship");
+  }
+  if(confirm("Bạn có chắc chắn muốn thay đổi trạng thái đơn hàng này không?")) {
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: "/admin/order/setState",
+      data: { state, id },
+      success: function(result) {
+        if(result == state) {
+          location.reload();
+        }
+      }
+    });
+  }
+  
+}
+function deleteOrder(id = 0)
+{
+  if (confirm('Bạn có chắc muốn xóa đơn hàng này?')) {
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: "/admin/order/delete",
+      data: { id },
+      success: function(result) {
+        if (result == "success") {
+          location.reload();
+        }
+      }
+    });
+  }
+   
 }
 
 

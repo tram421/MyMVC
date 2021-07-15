@@ -105,15 +105,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/orders/manage" class="nav-link">
+                <a href="/admin/orders/manage/all" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Quản lý đơn hàng</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin/products/list" class="nav-link">
+                <a href="/admin/orders/manage/completeOrder" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách sản phẩm</p>
+                  <p>Đơn hàng đã hoàn thành</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/orders/trash" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thùng rác</p>
                 </a>
               </li>
           

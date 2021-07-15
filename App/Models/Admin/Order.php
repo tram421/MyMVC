@@ -46,4 +46,42 @@ class Order extends Model
         $sql = "UPDATE $this->table SET total = $value WHERE id = $id";
         return $this->query($sql);
     }
+
+    public function setState($state, $id)
+    {
+        $sql = "UPDATE `$this->table` SET `state` = '$state' WHERE id = $id";
+        // dd($sql);
+        return $this->query($sql);
+    }
+    public function delete($id)
+    {
+        $sql = "UPDATE `$this->table` SET `is_delete` = true WHERE id = $id";
+        // dd($sql);
+        return $this->query($sql);
+    }
+    public function getTrash()
+    {
+        $sql = "SELECT *
+                From $this->table 
+                WHERE `is_delete` = true";
+        // dd($sql);
+        return $this->fetchArray($sql);
+    }
+    public function getForTab($tab = '') 
+    {
+        if ($tab == 'all'){
+            $sql = "SELECT *
+            From `$this->table`
+            WHERE `is_delete` IS NULL";
+        } else {
+            $sql = "SELECT *
+                From $this->table 
+                WHERE `is_delete` IS NULL AND `state` = '$tab'";
+        }
+       
+        // dd($sql);
+        return $this->fetchArray($sql);
+    
+    }
+
 }
