@@ -58,8 +58,7 @@ class ProductController extends Controller
                 return json([
                         'error' => false,
                         'data' => $result
-                    ]);
-                
+                    ]);                
             }
         }
        

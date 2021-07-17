@@ -149,6 +149,31 @@
              
             </ul>
           </li>
+          <!-- Trang -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-pager"></i>
+              <p>
+                Page
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/page/gioi-thieu" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Giới thiệu</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/page/lien-he" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Liên hệ</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
           
         </ul>
       </nav>

@@ -17,7 +17,7 @@
 
 
 	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-140">
+	<section class="bg0 p-t-0 p-b-140">
 		<div class="container">
 			<div class="p-b-10">
 			</div>
@@ -330,10 +330,194 @@
 		</div>
 	</section>
 
-	<div class="line">Khuyến mãi cực lớn, hàng hóa bao la. Điện thoại hotline: 0896653653 (CSKH) </div>
+	<div class="line text-info">Khuyến mãi cực lớn, hàng hóa bao la. Điện thoại hotline: 0896653653 (CSKH) </div>
+
+	<section class="sec-relate-product p-2" style="background-color:#dfe0e6">
+		<div class="container">
+			<div class="p-b-20">
+				<h4 class="ltext-101  cl5 txt-center">
+					Sản phẩm mới nhất
+				</h4>
+			</div>
+
+			<!-- Slide2 -->
+			<div class="wrap-slick2">
+				<div class="slick2">
 
 
+                    <?php
+                        if (!is_null($newest)) {
+                            foreach ($newest as $key=>$value) {
+                                
+                         
+                    ?>
+
+					<div class="item-slick2 p-1 border m-2">
+						<!-- Block2 -->
+						<div class="block2 align-content-center">
+							<div class="block2-pic hov-img0 ">
+								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
+
+								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+									Quick View
+								</a>
+							</div>
+
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l">
+									<a href="product-detail.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+										<?= $value['name'] ?>
+									</a>
+
+									<del class="stext-105 cl3 m-auto">
+                                        <?= number_format($value['price'],0,".",","); ?> đ
+                                    </del>
+                                    <span class="stext-105 cl3 color-red mtext-104 m-auto">
+                                        <?= number_format($value['price_sale'],0,".",","); ?> đ
+                                    </span>
+								</div>
+
+								<!-- <div class="block2-txt-child2 flex-r p-t-3">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+										<img class="icon-heart1 dis-block trans-04" src="/template/images/icons/icon-heart-01.png" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/template/images/icons/icon-heart-02.png" alt="ICON">
+									</a>
+								</div> -->
+							</div>
+						</div>
+					</div>
+                    <?php 
+                       }
+                        }
+                    ?>
+
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Slide2 -->
+			<div class="wrap-slick1 boder pl-5 pr-5">
+				<div class="slick1" >
+
+
+                    <?php
+					// var_dump($post);
+                        if (!is_null($post)) {
+                            foreach ($post as $key=>$value) {
+                                
+                         
+                    ?>
+					
+
+					<div class="p-b-63 pr-5 pl-5 m-0">
+
+							<div class="p-t-32">
+								<h4 class="p-b-15">
+									<a href="blog-detail.html" class="ltext-108 cl2 hov-cl1 trans-04 text-info">
+										<?= $value['title'] ?>
+									</a>
+								</h4>
+
+								<p class="stext-117 cl6"><?=\Core\Helper::decodeSafe($value['short_content']) ?></p>
+								<p class="stext-117 cl6"><?= \Core\Helper::decodeSafe(substr($value['description'],0,200)) ?>..... </p>
+
+								<div class="flex-w flex-sb-m p-t-18">
+									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+										<span>
+											<span class="cl4">By</span> Admin  
+											<span class="cl12 m-l-4 m-r-6">|</span>
+										</span>
+
+										<span>
+											tag: <?= $value['category'] ?> 
+											<span class="cl12 m-l-4 m-r-6">|</span>
+										</span>
+
+										<span>
+											public: <?= $value['created_at'] ?>
+										</span>
+									</span>
+
+								</div>
+							</div>
+						</div>
+                    <?php 
+                       }
+                        }
+                    ?>
+
+
+
+				</div>
+			</div>
+
+				<div class="p-b-20">
+				<h4 class="ltext-101  cl5 txt-center">
+					Sản phẩm giá sốc
+				</h4>
+			</div>
+
+			<!-- Slide2 -->
+			<div class="wrap-slick2">
+				<div class="slick2">
+
+
+                    <?php
+                        if (!is_null($saleProduct)) {
+                            foreach ($saleProduct as $key=>$value) {
+                                
+                         
+                    ?>
+
+					<div class="item-slick2 p-1 border m-2">
+						<!-- Block2 -->
+						<div class="block2 align-content-center">
+							<div class="block2-pic hov-img0 ">
+								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
+
+								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+									Quick View
+								</a>
+							</div>
+
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l">
+									<a href="product-detail.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+										<?= $value['name'] ?>
+									</a>
+
+									<del class="stext-105 cl3 m-auto">
+                                        <?= number_format($value['price'],0,".",","); ?> đ
+                                    </del>
+                                    <div class="stext-105 cl3 color-red mtext-104 m-auto">
+                                        <?= number_format($value['price_sale'],0,".",","); ?> đ 
+										<span class="stext-105 cl3 text-success color-blue stext-109 ml-3">
+											Giảm <?= number_format($value['percent'],1) ?> %
+										</span>
+                                    </div>
+									
+										
+								</div>
+
+						
+							</div>
+						</div>
+					</div>
+                    <?php 
+                       }
+                        }
+                    ?>
+
+
+
+				</div>
+			</div>
 
 		</div>
+
+		
+		
 	</section>
 

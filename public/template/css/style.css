@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
 
-body, .main-menu > li > a, .ltext-101, .ltext-201, .ltext-106{
+body, .main-menu > li > a, .ltext-101, .ltext-201, .ltext-106, .ltext-108, .cl6{
     font-family: 'Playfair Display', serif !important;
     font-weight: 700;
 }
 .small-img{
-    width: 100px;
+    width: 60px;
 }
 a>span{
     color:rgb(95, 95, 95) !important;
@@ -53,6 +53,9 @@ a>span{
     width: max-content;
     display: block;
 }
+.overflow-hidden{
+    overflow: hidden !important;
+}
 .hover-red:hover{
     color:rgb(124, 1, 11) !important; 
 }
@@ -66,8 +69,14 @@ a>span{
 .color-red{
     color:#a50505;
 }
+.color-blue{
+    color:#20357c;
+}
 .color-black{
     color:#292929 !important;
+}
+.color-green{
+    color: #4e995f !important
 }
 .text-light{
     font-weight: lighter;

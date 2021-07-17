@@ -84,8 +84,7 @@
                                     <img src="<?php 
                                         if ($product['file'] == '') {
                                             echo '/template/images/no-image.jpg';
-                                        }
-                                        if (file_exists(substr($product['file'],1 )) == false) {
+                                        }else if (file_exists(substr($product['file'],1 )) == false) {
                                             echo '/template/images/no-image.jpg';
                                         } else {
                                             echo $product['file'] ;

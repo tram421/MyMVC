@@ -29,6 +29,8 @@ $routes['user/send-mail'] = 'App\Controllers\UserController@sendMail';
 $routes['user/fail-email'] = 'App\Controllers\UserController@failEmail';
 $routes['user/success-email'] = 'App\Controllers\UserController@sendMailView';
 $routes['user/confirm/{token}.html'] = 'App\Controllers\UserController@registerSuccess';
+//page
+$routes['page/{slug}.html'] = 'App\Controllers\PageController@show';
 
 
 //--------------------------------------------------------------------------------------
@@ -91,3 +93,6 @@ $routes['admin/posts/list'] = 'App\Controllers\Admin\PostController@list';
 $routes['admin/posts/listDesc'] = 'App\Controllers\Admin\PostController@listDesc';
 $routes['admin/posts/editActive/{id}/{stt}'] = 'App\Controllers\Admin\PostController@editActive';
 $routes['admin/post/trashlist'] = 'App\Controllers\Admin\PostController@trashList';
+//page
+$routes['admin/page/{slug}'] = 'App\Controllers\Admin\PageController@manage';
+$routes['admin/page/update'] = 'App\Controllers\Admin\PageController@update';

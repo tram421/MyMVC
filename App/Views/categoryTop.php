@@ -5,17 +5,17 @@
             
 
             <?php
+            
                 if ($menusData->num_rows > 0) {
-                    while($row = $menusData->fetch_assoc()){					
+                    while($row = $menusData->fetch_assoc()){	
+                        			
             ?>
                 <div class="col-md-2 col-sm-4 col-4 overflow-hidden">
                     <a class="text-center" href = "/danh-muc/<?= Core\Helper::slug($row['name']) . '-id' . $row['id'] ?>.html">
                         <img class = "small-img " src="<?php 
                             if ($row['image'] == '') {
                                 echo '/template/images/no-image.jpg';
-                            }
-
-                            if (file_exists(substr($row['image'],1)) == false) {
+                            }else if (file_exists(substr($row['image'],1)) == false) {
                                 echo '/template/images/no-image.jpg';
                             } else {
                                 echo $row['image'];

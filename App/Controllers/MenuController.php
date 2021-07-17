@@ -21,11 +21,14 @@ class MenuController extends Controller
         #getChild($id, $page)
         $page = 1;
         $product = $this->product->getChild($id,$page);
+        $feature = new Product;
+        $feature = $feature->getFeature(5);
         $this->loadView('main', [
             'title' => __PRODUCT_PAGE__,
             'template' => "product/product",
             'menusData' => $menusData,
-            'product' => $product
+            'product' => $product,
+            'feature' => $feature
             ]);
     }
 }

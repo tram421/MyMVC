@@ -51,9 +51,21 @@ class Product extends Model
      return $this->fetch($sql);
  }
 
- public function getFeature() {
+ public function getFeature($sl = 20) {
 
-     $sql = "SELECT * FROM $this->table where `feature` = 1 limit 20";
+     $sql = "SELECT $this->table.*, (100-($this->table.price_sale/$this->table.price)*100) as percent FROM $this->table where `feature` = 1 limit $sl";
+            
+     return $this->fetchArray($sql);
+ }
+ public function getNewest() {
+
+     $sql = "SELECT * FROM $this->table order by id desc limit 20";
+            
+     return $this->fetchArray($sql);
+ }
+ public function getSale() {
+
+     $sql = "SELECT $this->table.*, (100-($this->table.price_sale/$this->table.price)*100) as percent FROM `$this->table` order by percent DESC limit 20";
             
      return $this->fetchArray($sql);
  }

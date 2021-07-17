@@ -56,11 +56,11 @@
 							</li>
 
 							<li>
-								<a href="/gioi-thieu" title = '<?= __ABOUT_PAGE__ ?>'><?= __ABOUT_PAGE__ ?></a>
+								<a href="/page/gioi-thieu.html" title = '<?= __ABOUT_PAGE__ ?>'><?= __ABOUT_PAGE__ ?></a>
 							</li>
 
 							<li>
-								<a href="/lien-he" title = '<?= __CONTACT_PAGE__ ?>'><?= __CONTACT_PAGE__ ?></a>
+								<a href="/page/lien-he.html" title = '<?= __CONTACT_PAGE__ ?>'><?= __CONTACT_PAGE__ ?></a>
 							</li>
 						</ul>
 					</div>	
