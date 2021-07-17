@@ -40,7 +40,7 @@ if (confirm('Nhấn OK để tải lên')) {
          } else {
             // alert('lỗi');
             if (result.message == 'File ảnh đã tồn tại') {
-              if (confirm("Lỗi! " + result.message + ". Nhấn ok để vẫn tải lên")) {
+              if (confirm("Lỗi! " + result.message + ". Nhấn ok để vẫn tải lên, nhấn cancel để lấy ảnh đã tồn tại.")) {
                 $.ajax({
                   processData: false,
                   contentType: false,
@@ -64,7 +64,9 @@ if (confirm('Nhấn OK để tải lên')) {
                   }
                 });
               } else { //nhấn nút cancel
-                
+                const html = '<a href="/' + result.url + '" target="_blank"><img src="/' + result.url + '" width="100px"></a>';
+                $("#thumb").html(html);
+                $("#url_file").val("/" + result.url);
               }
             } else {
               alert("LỖI: " + result.message);
@@ -87,8 +89,13 @@ function sendRequest($message = '', id = 0, url = "") {
       dataType: "JSON",
       data: { id },
       url: url,
-      success: function(result) {        
-          location.reload();        
+      success: function(result) {  
+        if (result.mess != 'success') {
+          location.reload();    
+        } else {
+          alert ("Tác vụ thành công");
+        }  
+              
       }
     });
   }
@@ -200,22 +207,7 @@ function addSlideForm()
   }
   
 }
-    /*
-id	"40"
-name	"Nguyễn Hoàng Mai Trâm"
-receiver_name	"Nguyễn Hoàng Mai Trâm"
-receiver_phone	"0123456789"
-receiver_address	"5A, Phó Cơ Điều, Phường 8, Thành phố Vĩnh Long, Vĩnh Long"
-state	"create"
-created_at	"2021-07-13 18:30:37"
-quantity	"5"
-product_id	"8"
-product_name	"Tivi Samsung 2"
-product_price	"9000000"
-product_sale	"7990000"
-product_file	"/uploads/2021/05/31/tv02.jpg"
-category_name	"Tivi SamSung"
-     */
+
 function showOrderDetail(id = 0) {
    $("#show-item-" + id).removeClass("hide");
   $('#show-item-'+id).addClass('show');

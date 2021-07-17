@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="">Mô Tả Ngắn</label>
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="content" class="form-control"></textarea>
         </div>
 
         <div class="row">
@@ -49,7 +49,7 @@
 
         <div class="form-group">
             <label for="">Chi Tiết Sản Phẩm</label>
-           <textarea name="content" id="content"></textarea>
+           <textarea name="description" id="content"></textarea>
         </div>
       
         <div class="form-group">
@@ -58,7 +58,10 @@
             <div id="thumb"></div>
             <input type="hidden" name="file" value="" id="url_file">
         </div>
-        
+        <div class="">
+            <label for="" class="mb-2"> Feature: </label>
+            <input type="checkbox" value="1" name="feature" class="" style="width: 30px;height: 30px;">            
+        </div>
         <div class="form-group">
             <label>Kích Hoạt</label>
             <div class="custom-control custom-radio">
@@ -71,6 +74,9 @@
                 <label for="customRadio2" class="custom-control-label">Không</label>
             </div>
         </div>
+
+      
+        
 
     </div>
 

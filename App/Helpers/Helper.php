@@ -48,11 +48,11 @@ class Helper
     }
 
 
-    public static function active($is_active = 0, $id, $url = '')
+    public static function active($is_active = 0, $id, $url = '', $string = 'Kích Hoạt')
     {
         return ($is_active == 0)
-        ? '<a href = "'.$url.$id.'/0 "><button id = "active" type="button"  class="btn btn-block bg-gradient-secondary ">Không kích hoạt</button></a>'
-        : '<a href = "'.$url.$id.'/1 "><button id = "active" type="button"  class="btn btn-block bg-gradient-success">Kích hoạt</button></a>';
+        ? '<a href = "'.$url.$id.'/0 "><button id = "active" type="button"  class="btn btn-block bg-gradient-secondary ">Không '.$string .'</button></a>'
+        : '<a href = "'.$url.$id.'/1 "><button id = "active" type="button"  class="btn btn-block bg-gradient-success">'.$string .'</button></a>';
     }
 
     public static function menuAll()

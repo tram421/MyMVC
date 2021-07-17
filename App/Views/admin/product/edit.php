@@ -72,7 +72,10 @@
             </div>
             <input type="hidden" name="file" value="<?= $data['file'] ?>" id="url_file">
         </div>
-        
+        <div class="">
+            <label for="" class="mb-2"> Feature:</label>
+            <input type="checkbox" value="1" name="feature" class="" style="width: 30px;height: 30px;" <?= ($data['feature'] == 1) ? "checked" : '' ?>>            
+        </div>
         <div class="form-group">
             <label>Kích Hoạt</label>
             <div class="custom-control custom-radio">

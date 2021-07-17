@@ -50,5 +50,12 @@ class Product extends Model
             
      return $this->fetch($sql);
  }
+
+ public function getFeature() {
+
+     $sql = "SELECT * FROM $this->table where `feature` = 1 limit 20";
+            
+     return $this->fetchArray($sql);
+ }
  
 }

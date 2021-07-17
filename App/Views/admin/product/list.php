@@ -8,8 +8,13 @@
                 ?>
             </span>
             <i class="far fa-trash-alt"></i> Trash
+        </a>        
+        <a class="btn btn-app mt-2 bg-success"  href = "/admin/products/listDesc">
+            <i class="fas fa-spa"></i> Mới nhất
         </a>
-        
+        <a class="btn btn-app mt-2"  href = "/admin/products/list">
+            <i class="fas fa-sort-numeric-up"></i> Cũ nhất
+        </a>
     </div>
 </div>
 
@@ -23,9 +28,10 @@
                         <th>Tên Sản Phẩm</th>
                         <th style="width: 100px">Danh Mục</th>
                         <th style="width: 150px">Giá gốc</th>
-                        <th style="width: 150px">Giá giảm</th>
+                        <th style="width: 100px">Giá giảm</th>
                         <th style="width: 100px">Hình Ảnh</th>
                         <th style="width: 150px">Trạng Thái</th>
+                        <th style="width: 50px">Tiêu biểu</th>
                         <th style="width: 200px">Ngày Cập Nhật</th>
                         <th style="width: 50px">Sửa</th>
                         <th style="width: 50px">Xóa</th>
@@ -42,7 +48,8 @@
                     while ($row = $data->fetch_assoc()) {
                         $menu = new App\Controllers\Admin\MenuController;
                         $menu_name = $menu->get($row['menu_id']);
-
+                        $feature = '<a style="color:gray" class="fas fa-circle mt-2" href="/admin/products/editFeature/'.$row['id'].'/'. 0 .'"></a>';
+                        if($row['feature'] == 1) $feature = '<a style="color:red" class="fas fa-circle mt-2" href="/admin/products/editFeature/'.$row['id'].'/'. 1 .'"></a>';
                         $html .= '<tr>';
                         $html .= '<td>' . $i++ . '</td>';
                         $html .= '<td>' . $row['id'] . '</td>';
@@ -55,7 +62,8 @@
                         $html .= '<td>' . number_format($row['price'],0,'.',',') . ' đ</td>';
                         $html .= '<td style="color: red">' . number_format($row['price_sale'],0,'.',',') . ' đ</td>';
                         $html .= '<td>' . '<img   style="width: 60px; height: 40px" src="'.$row['file'].'" alt="">' . '</td>';
-                        $html .= '<td>' . App\Helpers\Helper::active($row['active'], $row['id'], '/admin/products/editActive/') . '</td>';
+                        $html .= '<td>' . App\Helpers\Helper::active($row['active'], $row['id'], '/admin/products/editActive/') . '</td>';                        
+                        $html .= '<td>' . $feature . '</td>';
                         $html .= '<td>' . $row['updated_at'] . '</td>';
                         $html .= "<td><a href = '/admin/products/edit/".$row['id']."'><i class = 'far fa-edit'></i></a></td>";
                         $html .= '<td><a href = "#" onclick="sendRequest(\'Bạn có chắc muốn xóa sản phẩm này không?\','.$row['id'].', \'/admin/products/trash\')" ><i class = "far fa-trash-alt"></i></a></td>';

@@ -12,7 +12,7 @@ class Product extends Model
     {
         return $this->insertArray($data, $this->table);
     }
-    public function get($trash = 0, $limit = 0, $offset = 0)
+    public function get($trash = 0, $limit = 0, $offset = 0, $sort = 'asc')
     {
         if ($limit == 0 && $offset == 0) {
             $sql = "SELECT * from $this->table where is_trash = $trash";
@@ -22,11 +22,14 @@ class Product extends Model
         if ( $limit != 0) {
             $sql = "SELECT $this->table.*, menus.name as menu_name from $this->table join menus
                     on $this->table.menu_id = menus.id where is_trash = $trash 
-                    order by $this->table.id asc limit $limit offset $offset";
+                    order by $this->table.id $sort limit $limit offset $offset";
 
             return $this->query($sql);
-        }       
+        } 
+        
+        
     }
+    
     
     public function getNumRows($trash = 0)
     {

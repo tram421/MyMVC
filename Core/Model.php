@@ -40,6 +40,7 @@ class Model extends DB
     public function fetchArray($sql = '')
     {
         $result = $this->conn->query($sql);
+        // dd($result);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $this->data[] = $row;
@@ -76,7 +77,6 @@ class Model extends DB
         }
         $sqlArray = substr(trim($sqlArray),0,-1);
         // echo "UPDATE $table set $sqlArray where id = $id";
-
         return $this->query("UPDATE $table set $sqlArray where id = $id");
     }
 

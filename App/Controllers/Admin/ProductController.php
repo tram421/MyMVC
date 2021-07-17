@@ -36,6 +36,7 @@ class ProductController extends Auth
             $data['price']          = isset($_POST['price']) ? intval($_POST['price']) : 0;
             $data['price_sale']     = isset($_POST['price_sale']) ? intval($_POST['price_sale']) : 0;
             $data['active']         = isset($_POST['active']) ? intval($_POST['active']) : 1;
+            $data['feature']         = isset($_POST['feature']) ? 1 : 0;
             $data['updated_at']     = date("Y-m-d H:i:s");
             if ($isCreateTime == 1) {
                         $data['created_at'] = date("Y-m-d H:i:s");
@@ -83,6 +84,7 @@ class ProductController extends Auth
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [];
             $data = $this->formRequest();
+      
             if (!$data) return Helper::redirect('/admin/products/add');
             $result = $this->model->insert($data);
             if ($result) {
@@ -117,6 +119,23 @@ class ProductController extends Auth
         ]);
     }
 
+    public function listDesc()
+    {
+        $page = (isset($_GET['page']) && $_GET['page'] > 1) ? (int) $_GET['page'] : 1;
+        // die(dd($_GET));
+        $limit = 5;
+        $offset = ($page - 1) * $limit;
+        $sumPage = ceil($this->model->getNumRows() / $limit);
+
+        return $this->loadView('/admin/main', [
+            'title' => __LIST_PRODUCT_PAGE__,
+            'template' => 'product/list',
+            'data' => $this->model->get(0, $limit, $offset, 'desc'),
+            'page' => $page,
+            'sumPage' => $sumPage,
+        ]);
+    }
+
     public function editActive($id = 0, $stt = -1)
     {
         if ($id == 0 || $stt == -1) {
@@ -129,8 +148,21 @@ class ProductController extends Auth
         $this->model->update($data, $id);
 
         Session::addFlash('success', __UPDATE_SUCCESS__);
-        return Helper::redirect('/admin/products/list');
+        return Helper::reload();
 
+    }
+    public function editFeature($id = 0, $stt = -1)
+    {
+        if ($id == 0 || $stt == -1) {
+            Session::addFlash('error', __DATA_ERROR__);
+            return Helper::reload();
+        }
+        $feature = $stt == 1 ? 0 : 1;
+        $data = ['feature' => $feature];
+        $this->model->update($data, $id);
+
+        Session::addFlash('success', __UPDATE_SUCCESS__);
+        return Helper::reload();
     }
 
     public function edit($id = 0)
@@ -152,7 +184,7 @@ class ProductController extends Auth
                 Session::addFlash('error', __NOT_EXIST_ID__);
                 return Helper::redirect('/admin/products/list');
             }
-
+            
             $data = $this->formRequest();
             if ( !$data ) {
                 Session::addFlash('error', __NOT_RECEIVED_DATA__);

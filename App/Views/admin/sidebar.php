@@ -76,7 +76,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin/products/list" class="nav-link">
+                <a href="/admin/products/listDesc" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách sản phẩm</p>
                 </a>
@@ -122,6 +122,33 @@
                   <p>Thùng rác</p>
                 </a>
               </li>
+           </ul>
+          </li>
+          <!-- Sản phẩm -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-pen-fancy"></i>
+              <p>
+                Bài viết
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/posts/add" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm bài viết</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/posts/listDesc" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách bài viết</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
           
         </ul>
       </nav>
