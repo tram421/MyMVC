@@ -17,6 +17,7 @@ class PageController extends Controller
             $page = $this->model->show($slug);
             $feature = new Product;
             $feature = $feature->getFeature(5);
+            
             $this->loadView('main',[
                 'title' => 'Quản lý trang '.$slug,
                 'template' => 'page/view',

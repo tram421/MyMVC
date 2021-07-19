@@ -13,8 +13,10 @@ class Model extends DB
     public function query($sql = '')
     {
         $query = $this->conn->query($sql);
+        
         if ($query) return $query;
         // return false;
+        
         die($this->conn->error . ": " . $sql);
     }
     
@@ -38,14 +40,22 @@ class Model extends DB
     }
 
     public function fetchArray($sql = '')
-    {
+    {   
         $result = $this->conn->query($sql);
+
         // dd($result);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $this->data[] = $row;
-            }  
+        // dd($sql);
+        if($result != NULL) {
+            
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->data[] = $row;
+                }  
+            }
+        } else {
+            return NULL;
         }
+        
         return $this->data;
     }
 

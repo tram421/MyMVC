@@ -53,8 +53,8 @@ class Product extends Model
 
  public function getFeature($sl = 20) {
 
-     $sql = "SELECT $this->table.*, (100-($this->table.price_sale/$this->table.price)*100) as percent FROM $this->table where `feature` = 1 limit $sl";
-            
+     $sql = "SELECT $this->table.*, (100-($this->table.price_sale/$this->table.price)*100) as percent FROM $this->table where `feature` = 1  order by `id` desc limit $sl";
+            // dd($sql);
      return $this->fetchArray($sql);
  }
  public function getNewest() {
@@ -68,6 +68,14 @@ class Product extends Model
      $sql = "SELECT $this->table.*, (100-($this->table.price_sale/$this->table.price)*100) as percent FROM `$this->table` order by percent DESC limit 20";
             
      return $this->fetchArray($sql);
+ }
+ public function searchName($string)
+ {
+      
+     $sql = "SELECT * from $this->table where `name` LIKE '%$string%'";
+      
+     return $this->fetchArray($sql);
+
  }
  
 }

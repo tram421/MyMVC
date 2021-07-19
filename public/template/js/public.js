@@ -1,3 +1,29 @@
+function ChangeToSlug(title) {
+  var slug;
+
+  slug = title.toLowerCase();
+
+  slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, "a");
+  slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, "e");
+  slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, "i");
+  slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, "o");
+  slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, "u");
+  slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, "y");
+  slug = slug.replace(/đ/gi, "d");
+  slug = slug.replace(
+    /\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi,
+    ""
+  );
+  slug = slug.replace(/ /gi, "-");
+  slug = slug.replace(/\-\-\-\-\-/gi, "-");
+  slug = slug.replace(/\-\-\-\-/gi, "-");
+  slug = slug.replace(/\-\-\-/gi, "-");
+  slug = slug.replace(/\-\-/gi, "-");
+  slug = "@" + slug + "@";
+  slug = slug.replace(/\@\-|\-\@|\@/gi, "");
+
+  return slug;
+}
 /*
 * Description:      This function will handle when user click on button "Load more" at product pages
 * Input param is:   menu_id (category) 
@@ -28,7 +54,7 @@ function loadMoreProduct(category) {
                                 '</div>'+
                                 '<div class="block2-txt flex-w flex-t p-t-14">'+
                                     '<div class="block2-txt-child1 flex-col-l ">'+
-                                        '<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">'+
+                                        '<a href="/san-pham/'+ChangeToSlug(result.data[i].name)+'-id'+result.data[i].id+'.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">'+
                                             result.data[i].name +
                                         '</a>'+
                                         '<del class="stext-105 cl3">'+
@@ -235,7 +261,7 @@ function deleteItemCart(id = 0)
         }
     });
 }
-function updateCart()
+function searche()
 {
-    
+    console.log('tìm kiếm');
 }

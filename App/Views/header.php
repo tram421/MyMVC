@@ -171,11 +171,11 @@
                 ?>
 
                 <li>
-                    <a href="/gioi-thieu" title = '<?= __ABOUT_PAGE__ ?>'><?= __ABOUT_PAGE__ ?></a>
+                    <a href="/page/gioi-thieu.html" title = '<?= __ABOUT_PAGE__ ?>'><?= __ABOUT_PAGE__ ?></a>
                 </li>
 
                 <li>
-                    <a href="/lien-he" title = '<?= __CONTACT_PAGE__ ?>'><?= __CONTACT_PAGE__ ?></a>
+                    <a href="/page/lien-he.html" title = '<?= __CONTACT_PAGE__ ?>'><?= __CONTACT_PAGE__ ?></a>
                 </li>
 			</ul>
 		</div>
@@ -187,11 +187,11 @@
 					<img src="/template/images/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
+				<form class="wrap-search-header flex-w p-l-15" action="/search " method="GET">
+					<button class="flex-c-m trans-04 button" type="submit"> 
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
+					<input class="plh3" type="text" name="search" placeholder="Search..." value="">
 				</form>
 			</div>
 		</div>

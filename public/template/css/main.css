@@ -571,7 +571,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   background-color: transparent;
 }
 
-.wrap-search-header button {
+.wrap-search-header button, .wrap-search-header a {
   font-size: 50px;
   color: #333;
   width: 70px;

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
 
-body, .main-menu > li > a, .ltext-101, .ltext-201, .ltext-106, .ltext-108, .cl6{
+body, .main-menu > li > a, .ltext-101, .ltext-201, .ltext-106, .ltext-108, .cl6,.mtext-112{
     font-family: 'Playfair Display', serif !important;
     font-weight: 700;
 }
@@ -85,7 +85,9 @@ a>span{
 .text-thin{
     font-weight: lighter;
 }
-
+.text-thin{
+    font-weight: 100;
+}
 .hidden{
     visibility: hidden;
     display: none;
@@ -113,6 +115,11 @@ a>span{
     border:1px solid black;
     overflow-x: auto;
     display: block;
+}
+.table-noBlock{
+    width: 100%;
+    border:1px solid black;
+    overflow-x: auto;
 }
 /*Decorate*/
 .line{

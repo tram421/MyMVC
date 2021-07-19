@@ -29,9 +29,15 @@ $routes['user/send-mail'] = 'App\Controllers\UserController@sendMail';
 $routes['user/fail-email'] = 'App\Controllers\UserController@failEmail';
 $routes['user/success-email'] = 'App\Controllers\UserController@sendMailView';
 $routes['user/confirm/{token}.html'] = 'App\Controllers\UserController@registerSuccess';
+$routes['member/info/order'] = 'App\Controllers\MemberController@order';
+$routes['member/info/orderComplete'] = 'App\Controllers\MemberController@orderComplete';
 //page
 $routes['page/{slug}.html'] = 'App\Controllers\PageController@show';
-
+//search
+$routes['search'] = 'App\Controllers\SearchController@show';
+//view post
+$routes['post/id{id}-slug{slug}.html'] = 'App\Controllers\PostController@show';
+$routes['post/listCat/{cat}'] = 'App\Controllers\PostController@listOfCat';
 
 //--------------------------------------------------------------------------------------
 //admin

@@ -39,6 +39,37 @@ class Order extends Model
         // dd($sql);
         return $this->fetchArray($sql);
     }
+
+    public function getOrderOfUser($idUser = 0)
+    {
+        $sql = "SELECT  $this->table_products.quantity, products.name, products.file, products.price_sale, orders.ship, orders.total, orders.cost, orders.id, orders.state
+                FROM $this->table_products JOIN products
+                ON $this->table_products.id_product= products.id 
+                JOIN orders ON $this->table_products.order_id = orders.id
+                WHERE orders.idUser = $idUser AND orders.state <> 'complete'";
+   
+        return $this->fetchArray($sql);
+    }
+    public function getOrderComplete($idUser = 0)
+    {
+        $sql = "SELECT  $this->table_products.quantity, products.name, products.file, products.price_sale, orders.ship, orders.total, orders.cost, orders.id, orders.state
+                FROM $this->table_products JOIN products
+                ON $this->table_products.id_product= products.id 
+                JOIN orders ON $this->table_products.order_id = orders.id
+                WHERE orders.idUser = $idUser AND orders.state = 'complete'";
+   
+        return $this->fetchArray($sql);
+    }
+    public function countOrder($idUser = 0)
+    {
+        $sql = "SELECT Distinct `id` from `$this->table` where `idUser` = $idUser AND orders.state <> 'complete'";
+        return $this->fetchArray($sql);
+    }
+     public function countOrderComplete($idUser = 0)
+    {
+        $sql = "SELECT Distinct `id` from `$this->table` where `idUser` = $idUser AND orders.state = 'complete'";
+        return $this->fetchArray($sql);
+    }
     
     public function getOrders()
     {

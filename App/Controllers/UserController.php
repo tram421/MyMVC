@@ -22,23 +22,28 @@ class UserController extends Controller
 
     public function login()
     {
-        if (isset($_COOKIE['username'])) {
-            
+        if (isset($_COOKIE['username'])) {            
            
             $result = $this->user->get($_COOKIE['username']);
             if(is_null($result)) {
                 setcookie("username", "", time() - __TIME_COOKIE__,'/');
                 return Helper::redirect('/user/login');
             } else {
-                return Helper::redirect('/');
+                $this->loadView('main',[
+                    'title' => 'Thông tin tài khoản',
+                    'template' => 'user/info',
+                    'data' => $result
+                ]);                
             }
-
+        } else {
+            $this->loadView('main',[
+                'title' => 'Login',
+                'template' => 'user/loginForm'
+            ]);        
         }
-        $this->loadView('main',[
-            'title' => 'Login',
-            'template' => 'user/loginForm'
-        ]);
     }
+
+
 
     public function SignOut()
     {
