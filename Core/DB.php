@@ -10,7 +10,7 @@ class DB
     protected $username     = '';
     protected $password     = '';
     protected $database     = '';
-    protected $conn         = '';
+    protected $conn     = '';
 
    public function __construct()
    {

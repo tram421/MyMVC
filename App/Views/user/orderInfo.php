@@ -74,7 +74,7 @@
                 foreach($listOrder as $key=>$value) {
                     if($listOrder[$key]['id'] == $id) {
                         echo '<tr class=" hov-btn3">';
-                        echo '<td class="p-3" style="text-align:center"> ' . $listOrder[$key]['name'].'</td>';
+                        echo '<td class="p-3" style="text-align:center"> <a href="/san-pham/'.Core\Helper::slug($listOrder[$key]['name']).'-id'.$listOrder[$key]['product_id'].'.html">' . $listOrder[$key]['name'].'</a></td>';
                         echo '<td style="text-align:center">' . $listOrder[$key]['quantity'].'</td>';
                         echo '<td class="p-3" style="text-align:center"> ' . number_format($listOrder[$key]['price_sale'],0,'.',',').' đ</td>';
                         echo '<td class="p-3" style="text-align:center"> ' . number_format($listOrder[$key]['price_sale']*$listOrder[$key]['quantity'],0,'.',',').' đ</td>';

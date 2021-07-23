@@ -18,11 +18,7 @@ class Auth extends Controller
             if (is_null($this->user)) {
                 return Helper::redirect('/admin/login');
         
-            }
-            
-           
-            
-            
+            }    
             if ($this->user['password'] != $_COOKIE['password']) {
                 return Helper::redirect('/admin/login');
             }

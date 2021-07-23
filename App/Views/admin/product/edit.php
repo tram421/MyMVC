@@ -63,6 +63,10 @@
             <label for="">Chi Tiết Sản Phẩm</label>
            <textarea name="description" id="description"><?= Core\Helper::decodeSafe($data['description'])?></textarea>
         </div>
+        <div class="form-group">
+            <label for="">Thông số kỹ thuật</label>
+           <textarea name="factory_info" id="factory_info" class="w-50"><?= Core\Helper::decodeSafe($data['factory_info'])?></textarea>
+        </div>
       
         <div class="form-group">
             <label for="">Ảnh Đại Diện</label>

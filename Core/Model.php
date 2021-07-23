@@ -31,10 +31,12 @@ class Model extends DB
     public function fetch($sql = '')
     {
         $result = $this->conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
+        if ($result != NULL) {
+            if ($result->num_rows > 0) {
+                return $result->fetch_assoc();
+            }
         }
+        
         return NULL;
 
     }

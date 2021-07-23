@@ -22,12 +22,12 @@ class Slide extends Model
 
     public function insert($data = [])
     {
-        $this->insertArray($data, $this->table);
+        return $this->insertArray($data, $this->table);
     }
 
     public function update($data = [], $id)
     {
-        $this->updateArray($data, $this->table, $id);
+        return $this->updateArray($data, $this->table, $id);
     }
     
     public function delete($product, $id)
@@ -41,6 +41,10 @@ class Slide extends Model
 
         return $this->query("DELETE FROM $this->table where id = $id ");
     }
+     public function getMaxId()
+     {
+         return $this->fetch("SELECT MAX(`id`) as max from $this->table");
+     }
 }
 
 

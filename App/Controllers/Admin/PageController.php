@@ -4,9 +4,18 @@ use App\Core\Auth;
 use App\Models\Admin\Page;
 use Core\Session;
 use Core\Helper;
+use App\Controllers\Admin\LogController;
+
 class PageController extends Auth
 {
     private $model;
+    private $log;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->log = new LogController;
+
+    }
     public function manage($slug = '')
     {
         $this->model = new Page;
@@ -54,6 +63,10 @@ class PageController extends Auth
                 }
                 $result = $this->model->update($data, $_POST['id']);
                 if ($result) {
+
+                    $action = 'Update all page[' . $_POST['id'] . ']';;
+                    $this->log->addLog($this->user['id'], $action);
+
                     Session::addFlash('success', __UPDATE_SUCCESS__);
                     return Helper::reload();
                 }
@@ -66,4 +79,6 @@ class PageController extends Auth
         Session::addFlash('error', __NOT_EXIST_METHOD__);
          return Helper::reload();
     }
+
+    
 }

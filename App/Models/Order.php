@@ -42,7 +42,7 @@ class Order extends Model
 
     public function getOrderOfUser($idUser = 0)
     {
-        $sql = "SELECT  $this->table_products.quantity, products.name, products.file, products.price_sale, orders.ship, orders.total, orders.cost, orders.id, orders.state
+        $sql = "SELECT  $this->table_products.quantity, products.name, products.id as product_id, products.file, products.price_sale, orders.ship, orders.total, orders.cost, orders.id, orders.state
                 FROM $this->table_products JOIN products
                 ON $this->table_products.id_product= products.id 
                 JOIN orders ON $this->table_products.order_id = orders.id

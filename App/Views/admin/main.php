@@ -62,7 +62,6 @@
     </ul>
   </nav>
   <!-- /.navbar -->
-
   <?php include __VIEW__.'/admin/sidebar.php'; ?>
 
   <!-- Content Wrapper. Contains page content -->

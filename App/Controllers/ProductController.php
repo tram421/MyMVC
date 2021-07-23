@@ -25,8 +25,15 @@ class ProductController extends Controller
             $page = (isset($_POST['page'])) ? (int)$_POST['page'] : 1;
             $category = (isset($_POST['category'])) ? (int)$_POST['category'] : 0;
 
-            $result = $this->model->getChild($category, $page);
-        
+            $order = (isset($_POST['order'])) ? $_POST['order'] : 'id';
+            // dd($order);
+            $set = (isset($_POST['set'])) ? $_POST['set'] : 'asc';
+            // dd($order);
+           
+            $result = $this->model->getChild($category, $page, $order, $set);
+            foreach($result as $key=>$val) {
+                if(!file_exists(substr($val['file'],0,1))) $result[$key]['file'] = '/template/images/no-image.jpg';
+            }
             if (!is_null($result)) {
                 return json([
                     'error' => false,

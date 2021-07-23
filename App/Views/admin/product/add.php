@@ -50,6 +50,10 @@
         <div class="form-group">
             <label for="">Chi Tiết Sản Phẩm</label>
            <textarea name="description" id="content"></textarea>
+           <div class="form-group">
+                <label for="">Thông số kỹ thuật</label>
+            <textarea name="factory_info" id="factory_info" class="w-50"></textarea>
+            </div>
         </div>
       
         <div class="form-group">

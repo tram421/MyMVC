@@ -91,9 +91,10 @@ function sendRequest($message = '', id = 0, url = "") {
       url: url,
       success: function(result) {  
         if (result.mess != 'success') {
-          location.reload();    
+          alert("Tác vụ không thành công, Vui lòng tải lại trang và thử lại");    
         } else {
-          alert ("Tác vụ thành công");
+          location.reload();
+          
         }  
               
       }
@@ -355,6 +356,50 @@ function deleteOrder(id = 0)
   }
    
 }
+
+function logOut(id = 0)
+{
+//  console.log("tram");
+  if(confirm('Bạn có chắc muốn đăng xuất?')) {
+    $.ajax({
+      type: 'POST',
+      typeData: 'JSON',
+      url:'/admin/logOut',
+      success: function(result){
+        if(result.error == false) {
+          location.reload();
+        }
+      }
+    });
+  }
+}
+
+
+// function changeInfo(name = '', idAtt = '', id = 0)
+// {
+//    $("#" + idAtt).removeAttr("onclick");
+//     $("#" + idAtt).html('<input onkeyup="myKeyUp('+idAtt+'-'+id+')" value="' + name + '" onblur="save(\'' + idAtt + "', " + id + ')" name="' + idAtt + '" id = "' + idAtt + "-" + id + '">');
+// }
+// function myKeyUp(id = '') {
+//   $val = $('#'+id).val();
+//   console.log($val);
+  // $('#' + id).value($val);
+// }
+// function save(idAtt = '', id = 0) 
+// {
+  // $value = $("#" + idAtt + "-" + id).val();
+  // $.ajax({
+  //   type: "POST",
+  //   typeData: "JSON",
+  //   url: "/admin/user/updateUser",
+  //   data: { $value, idAtt, id },
+  //   success: function(result) {
+  //     if (result.error == false) {
+  //       alert("Cập nhật thông tin thành công");
+  //     }
+  //   }
+  // });
+// }
 
 
 

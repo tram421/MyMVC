@@ -2,6 +2,7 @@
 namespace App\Models\Admin;
 
 use Core\Model;
+use Core\DB;
 
 class Product extends Model
 {
@@ -9,7 +10,8 @@ class Product extends Model
     protected $table = 'products';
 
     public function insert($data = [])
-    {
+    { 
+        
         return $this->insertArray($data, $this->table);
     }
     public function get($trash = 0, $limit = 0, $offset = 0, $sort = 'asc')
@@ -25,16 +27,17 @@ class Product extends Model
                     order by $this->table.id $sort limit $limit offset $offset";
 
             return $this->query($sql);
-        } 
-        
-        
+        }
     }
-    
+     public function getMaxId()
+     {
+         return $this->fetch("SELECT MAX(`id`) as max from $this->table");
+     }
     
     public function getNumRows($trash = 0)
     {
         $sql = "SELECT id from $this->table where is_trash = $trash";
-        return $this->query($sql)->num_rows;
+        return sizeof($this->fetchArray($sql));
     }
    
     public function update($data = [], $id = 0)

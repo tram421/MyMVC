@@ -59,9 +59,10 @@
                             }
                             
                         }
-
+                        
                         if ($data != NULL && $del!= 2 ){
                             foreach($data as $key=>$value) {
+                            
                         ?>
                             
                             <tr class="odd">

@@ -134,3 +134,13 @@ a>span{
     color:#6f896d;
     border-radius: 5px;
 }
+.factory p{
+    font-weight: 700;
+}
+.factory li{
+    list-style-type: initial;
+}
+
+.factory div{
+    margin-left: 15px;
+}

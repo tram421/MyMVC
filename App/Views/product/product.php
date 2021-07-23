@@ -6,6 +6,8 @@
 		Core\Controller::loadView('categoryTop',[
 			    'menusData' => $menusData
         ]);
+
+
    
 ?>
 
@@ -47,20 +49,26 @@
 
                                     <ul>
                                         <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                                Newness
+                                            <a href="/danh-muc/<?=$category?>-id<?=$category_id?>.html/?newest=1" class="filter-link stext-106 trans-04">
+                                                Mới nhất
                                             </a>
                                         </li>
 
                                         <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Price: Low to High
+                                            <a href="/danh-muc/<?=$category?>-id<?=$category_id?>.html/?oldest=1" class="filter-link stext-106 trans-04">
+                                               Cũ nhất
                                             </a>
                                         </li>
 
                                         <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Price: High to Low
+                                            <a href="/danh-muc/<?=$category?>-id<?=$category_id?>.html/?price=asc" class="filter-link stext-106 trans-04">
+                                                Giá: Từ thấp tới cao
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <a href="/danh-muc/<?=$category?>-id<?=$category_id?>.html/?price=desc" class="filter-link stext-106 trans-04">
+                                                Giá: Từ cao tới thấp
                                             </a>
                                         </li>
                                     </ul>
@@ -133,7 +141,17 @@
                       
 			        <input type="hidden" value="1" id="page">
                     <div class="flex-c-m flex-w w-full p-t-45">
-                        <a onclick = "loadMoreProduct(<?=$product['menu_id']?>)" style = "cursor: pointer" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                        <a onclick = "loadMoreProduct(<?=$product['menu_id']?>, <?=(isset($_GET['price'])) ? '\'price_sale\'' : '\'id\''?>, <?php 
+                                        if(isset($_GET['price'])) {
+                                            if($_GET['price'] == 'asc'){
+                                                echo '\'asc\'';
+                                            }else echo '\'desc\'';
+                                        }
+                                        if (isset($_GET['newest'])){
+                                            echo '\'desc\'';
+                                        }
+                                        if (isset($_GET['oldest'])) echo '\'asc\'';
+                                    ?>)" style = "cursor: pointer" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                             Load More
                         </a>
                     </div>

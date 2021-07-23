@@ -4,12 +4,18 @@ use App\Core\Auth;
 use App\Models\Admin\Post;
 use Core\Session;
 use Core\Helper;
+use App\Controllers\Admin\LogController;
+
 class PostController extends Auth
 {
     private $model;
+    private $log;
     public function __construct()
     {
+        parent::__construct();
+
         $this->model = new Post;
+        $this->log = new LogController;
     }
      
     public function add()
@@ -42,7 +48,14 @@ class PostController extends Auth
     public function create()
     {
         $data = $this->formRequest(1);
-        $this->model->insert($data);
+        $result = $this->model->insert($data);
+        if ($result) {
+
+            $id = $this->model->getMaxId();
+
+            $action = 'create a post[' . $id['max']. ']';
+            $this->log->addLog($this->user['id'], $action);
+        }
         Session::addFlash('success', 'Thêm bài viết thành công');
         return Helper::reload();
        
@@ -156,6 +169,9 @@ class PostController extends Auth
         $data = ['public' => $active];
         $this->model->update($data, $id);
 
+        $action = 'Update [active] of post[' . $id. ']' . ' to ' . $active;
+        $this->log->addLog($this->user['id'], $action);
+
         Session::addFlash('success', __UPDATE_SUCCESS__);
         return Helper::reload();
 
@@ -198,6 +214,10 @@ class PostController extends Auth
             }
             $result = $this->model->update($data, $_POST['id']);
             if ($result) {
+
+                $action = 'Update all of post[' . $_POST['id']. ']';
+                $this->log->addLog($this->user['id'], $action);
+
                 Session::addFlash('success', __UPDATE_SUCCESS__);
                  return Helper::redirect('/admin/posts/listDesc');
             }
@@ -215,6 +235,10 @@ class PostController extends Auth
             if ($id != 0) {
                 $data = ['is_delete' => 1];
                 $this->model->update($data, $id);
+
+                $action = 'Move post[' . $_POST['id']. ']' . ' to trash';
+                $this->log->addLog($this->user['id'], $action);
+
                  return json(['mess' => 'success']);
             }
         }
@@ -224,6 +248,10 @@ class PostController extends Auth
         if ($id != 0) {
             $data = ['is_delete' => 0];
             $this->model->update($data, $id);
+
+            $action = 'restore post[' . $id . ']';
+            $this->log->addLog($this->user['id'], $action);
+
             Session::addFlash('success', 'Khôi phục thành công');
             return Helper::reload();
         }

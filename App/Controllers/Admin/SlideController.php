@@ -5,14 +5,20 @@ use App\Core\Auth;
 use App\Models\Admin\Slide;
 use Core\Helper;
 use Core\Session;
+use App\Controllers\Admin\LogController;
 
 class SlideController extends Auth
 {
     private $model;
-    // public function __constructor()
-    // {
-    //      $this->model = new Slide;
-    // }
+     private $log;
+
+    public function __construct()
+    {
+        parent::__construct();
+        //  $this->model = new Slide;
+        $this->log = new LogController;
+
+    }
     public function index()
     {
         $this->model = new Slide;
@@ -55,9 +61,17 @@ class SlideController extends Auth
         $this->model = new Slide;
         $data = [];
         $data = $this->formRequest();
-        $this->model->insert($data);
-        Session::addFlash('success', __ADD_SUCCESS__);
-        return Helper::redirect('/admin/slide');
+        $result = $this->model->insert($data);
+        if ($result) {       
+            $id = $this->model->getMaxId();          
+            $action = 'create a slide[' . $id['max']. ']';
+            $this->log->addLog($this->user['id'], $action);   
+                     
+            Session::addFlash('success', __ADD_SUCCESS__);
+            return Helper::redirect('/admin/slide');
+        }
+        Session::addFlash('error', 'Thêm slide thất bại');
+        return Helper::reload();
     }
 
     public function update()
@@ -66,10 +80,22 @@ class SlideController extends Auth
         $data = [];
         $data = $this->formRequest(0);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->model->update($data, $_POST['id']);
-            Session::addFlash('success', __UPDATE_SUCCESS__);
+
+            $result = $this->model->update($data, $_POST['id']);
+
+            if($result) {
+                $action = 'update a slide[' . $_POST['id']. ']';
+                $this->log->addLog($this->user['id'], $action);
+
+                Session::addFlash('success', __UPDATE_SUCCESS__);
+                return Helper::redirect('/admin/slide');
+            }
+            Session::addFlash('success', 'Cập nhật thất bại');
             return Helper::redirect('/admin/slide');
+            
         }
+        Session::addFlash('success', 'Không tồn tại phương thức');
+        return Helper::redirect('/admin/slide');
         
     }
     public function destroy()
@@ -82,16 +108,23 @@ class SlideController extends Auth
                 Session::addFlash('error', __NOT_EXIST_ID__);
                 return json(['message' => 'error']);
             }
-            $this->model->delete($slide, $_POST['id']);
+            $result = $this->model->delete($slide, $_POST['id']);
             
-            Session::addFlash('success',  __DESTROY_SUCCESS__);
+            if($result) {
+                $action = 'destroy a slide[' . $_POST['id']. ']';
+
+                $this->log->addLog($this->user['id'], $action);
+
+                Session::addFlash('success',  __DESTROY_SUCCESS__);
+                return json([
+                    'error' => false,
+                    'message' => __DESTROY_SUCCESS__
+                ]);
+            }
             return json([
-                'error' => false,
-                'message' => __DESTROY_SUCCESS__
-            ]);
-           
-            
-            
+                    'error' => true,
+                    'message' => 'Hủy slide thất bại'
+                ]);             
         }
         
         Session::addFlash('error',  __NOT_EXIST_METHOD__);

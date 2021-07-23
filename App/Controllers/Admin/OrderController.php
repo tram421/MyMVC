@@ -11,11 +11,12 @@ class OrderController extends Auth
     private $modelAdmin;
     public function __construct()
     {
+        parent::__construct();
         $this->model = new Order;
         $this->modelAdmin = new OrderAdmin;
     }
     public function list($tab = '')
-    { 
+    {
         if($tab != '') {
             $data = $this->modelAdmin->getForTab($tab);           
         }             
@@ -26,7 +27,7 @@ class OrderController extends Auth
         $page = 1;
         if($data != NULL) {            
             $page = (isset($_GET['page']) && $_GET['page'] > 1) ? (int) $_GET['page'] : 1;
-            // die(dd($_GET));
+           
             $limit = 5;
             $offset = ($page - 1) * $limit;
             $sumPage = ceil(sizeof($data)/ $limit);
@@ -40,6 +41,37 @@ class OrderController extends Auth
             'page' => $page
         ]);        
     } 
+
+    public function search()
+    {
+        $input = (isset($_GET['search_order'])) ? $_GET['search_order'] : '';
+        if(preg_match("/mkl-/i", $input)) {
+            $arr = explode('-', $input);
+            $id = (int)$arr[1];
+            
+        } else if(is_numeric($input)) {
+            $id = (int)$input;
+
+        } else {
+            $id = 0;
+        }
+          $data = $this->modelAdmin->getForSearch($id);  
+        //   $data[0] = $data;
+        //   dd($data); 
+        $limit = 1;
+        $offset = 0;
+        $sumPage = 1;
+        $page = 1;
+      
+        $this->loadView('admin/main',[
+            'title' => 'Quản lý đơn hàng',
+            'template' => '/order/list',
+            'data' => $data,
+            'sumPage' => $sumPage,
+            'page' => $page
+        ]); 
+
+    }
 
     public function completeOrder()
     {
@@ -73,6 +105,11 @@ class OrderController extends Auth
             $id = (isset($_POST['id'])) ? $_POST['id'] : 0;
             if ($id != 0) {
                $this->modelAdmin->delete($id);
+
+               $action = 'Move to trash of order[' . $id . ']';
+                $this->addLog($this->user['id'], $action);  
+
+
                return json('success');
             }
         }
@@ -118,6 +155,10 @@ class OrderController extends Auth
             $total = (isset($_POST['total'])) ? $_POST['total'] : 0;
             $result = $this->modelAdmin->storeShipCost($value, $id);
             $result = $this->modelAdmin->storeTotal($total, $id);
+
+            $action = 'Set ship cost of order[' . $id . ']: ' . 'is ' .  $value;
+            $this->addLog($this->user['id'], $action);
+
             return json('success');
         }
     }
@@ -129,9 +170,22 @@ class OrderController extends Auth
             if ($state != '' && $id != 0) {
                 $result = $this->modelAdmin->setState($state, $id);
 
+                $action = 'Set state order[' . $id . ']: ' . 'to ' .  $state;
+                $this->addLog($this->user['id'], $action);
+
                 return json($state);
             }
         }
+    }
+
+    private  function addLog($id,$action)
+    {
+        $log = new \App\Models\Admin\Log;
+        $arr = [];
+        $arr['user'] = $id;
+        $arr['action'] = $action;              
+        $arr['created_at'] = date("Y-m-d H:i:s");
+        $log->insert($arr);
     }
         
 }

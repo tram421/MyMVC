@@ -87,7 +87,7 @@ class UserController extends Controller
                 Session::addFlash('error', 'Email Không tồn tại');
                 return Helper::redirect('/user/login');
             }
-            if($result["permision"] != 'user') {
+            if($result["permision"] != 'user' || $result["permision"] != 'admin') {
                 Session::addFlash('error', 'Email Không tồn tại (101)');
                 return Helper::redirect('/user/login');
             }
@@ -259,7 +259,7 @@ class UserController extends Controller
             $mail = new \App\Controllers\Mail();
             $mail->CharSet = 'utf-8';
             
-            $mail->sendConfirm("maitram0291@gmail.com");
+            $mail->sendConfirm( $_SESSION['emailUserEmail']);
             return \Core\Helper::redirect('/user/success-email');
             
         }

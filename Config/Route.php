@@ -1,4 +1,5 @@
 <?php
+$routes['']                     = 'App\Controllers\MainController@index';
 //puclic
 $routes['danh-muc/{slug}-id{id}.html'] = 'App\Controllers\MenuController@index';
 
@@ -41,11 +42,18 @@ $routes['post/listCat/{cat}'] = 'App\Controllers\PostController@listOfCat';
 
 //--------------------------------------------------------------------------------------
 //admin
-$routes['']                         = 'App\Controllers\MainController@index';
+$routes['admin']                     = 'App\Controllers\Admin\MainController@index';
+$routes['admin/main/search']         = 'App\Controllers\Admin\MainController@search';
 $routes['admin/login']              = 'App\Controllers\Admin\LoginController@index';
+$routes['admin/logOut']              = 'App\Controllers\Admin\UserController@logOut';
 $routes['admin/user/login/store']   = 'App\Controllers\Admin\LoginController@store';
 $routes['admin/main']               = 'App\Controllers\Admin\MainController@index';
 
+//user
+$routes['admin/user/list']   = 'App\Controllers\Admin\UserController@list';
+$routes['admin/user/updateUser']   = 'App\Controllers\Admin\UserController@updateUser';
+$routes['admin/user/edit/{id}']   = 'App\Controllers\Admin\UserController@edit';
+$routes['admin/user/showOrder/{id}']   = 'App\Controllers\Admin\UserController@showOrder';
 //Danh mục
 $routes['admin/menus/add']                      = 'App\Controllers\Admin\MenuController@create';
 $routes['admin/menus/store']                    = 'App\Controllers\Admin\MenuController@store';
@@ -88,6 +96,7 @@ $routes['admin/order/storeShipCost'] = 'App\Controllers\Admin\OrderController@st
 $routes['admin/order/setState'] = 'App\Controllers\Admin\OrderController@setState';
 $routes['admin/order/delete'] = 'App\Controllers\Admin\OrderController@delete';
 $routes['admin/orders/trash'] = 'App\Controllers\Admin\OrderController@trash';
+$routes['admin/orders/search'] = 'App\Controllers\Admin\OrderController@search';
 //post 
 $routes['admin/posts/add'] = 'App\Controllers\Admin\PostController@add';
 $routes['admin/post/create'] = 'App\Controllers\Admin\PostController@create';

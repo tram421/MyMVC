@@ -80,8 +80,31 @@ class Order extends Model
         }
        
         // dd($sql);
+        return $this->fetchArray($sql);    
+    }
+
+    public function getForSearch($input)
+    {
+        $sql = "SELECT * from `$this->table`";
+        if($input != '') {
+            $sql .= " WHERE `id` = $input";
+        }
+        // dd($sql);
         return $this->fetchArray($sql);
-    
+    }
+    public function getAll()
+    {
+        return $this->fetchArray("SELECT * FROM $this->table");
+    }
+    public function getCostAll()
+    {
+        return $this->fetch("SELECT SUM(`cost`) as cost FROM $this->table WHERE `state` = 'complete'");
+    }
+    public function getCondition($field = 'id', $value = 0)
+    {
+        $sql = "SELECT * FROM $this->table WHERE `$field` = '$value'";
+        // dd($sql);
+        return $this->fetchArray($sql);
     }
 
 }

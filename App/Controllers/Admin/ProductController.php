@@ -33,6 +33,7 @@ class ProductController extends Auth
             }
             $data['menu_id']        = isset($_POST['menu_id']) ? intval($_POST['menu_id']) : 0;
             $data['description']    = isset($_POST['description']) ? Helper::makeSafe($_POST['description']) : '';
+            $data['factory_info']    = isset($_POST['factory_info']) ? Helper::makeSafe($_POST['factory_info']) : '';
             $data['price']          = isset($_POST['price']) ? intval($_POST['price']) : 0;
             $data['price_sale']     = isset($_POST['price_sale']) ? intval($_POST['price_sale']) : 0;
             $data['active']         = isset($_POST['active']) ? intval($_POST['active']) : 1;
@@ -78,7 +79,7 @@ class ProductController extends Auth
             'menus'     => $this->menuModel->getActive()
         ]);
     }
-
+    
     public function store()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -88,6 +89,11 @@ class ProductController extends Auth
             if (!$data) return Helper::redirect('/admin/products/add');
             $result = $this->model->insert($data);
             if ($result) {
+
+                $id = $this->model->getMaxId();
+                $action = 'insert 1 product to table: ' .'id: '.$id['max'] ;
+                $this->addLog($this->user['id'], $action);
+
                 Session::addFlash('success', __ADD_SUCCESS__);
                 return Helper::redirect('/admin/products/add');
             }
@@ -147,6 +153,9 @@ class ProductController extends Auth
         $data = ['active' => $active];
         $this->model->update($data, $id);
 
+        $action = 'update [active] of product[' . $id . '] to ' . $active;
+        $this->addLog($this->user['id'], $action);
+
         Session::addFlash('success', __UPDATE_SUCCESS__);
         return Helper::reload();
 
@@ -160,6 +169,10 @@ class ProductController extends Auth
         $feature = $stt == 1 ? 0 : 1;
         $data = ['feature' => $feature];
         $this->model->update($data, $id);
+
+        
+        $action = 'update [feature] of product[' . $id . '] to ' . $feature;
+        $this->addLog($this->user['id'], $action);
 
         Session::addFlash('success', __UPDATE_SUCCESS__);
         return Helper::reload();
@@ -192,6 +205,11 @@ class ProductController extends Auth
             }
             $result = $this->model->update($data, $_POST['id']);
             if ($result) {
+
+                
+                $action = 'update all product[' . $_POST['id'] . ']: ';
+                $this->addLog($this->user['id'], $action);
+
                 Session::addFlash('success', __UPDATE_SUCCESS__);
                 return Helper::redirect('/admin/products/list');
             }
@@ -216,7 +234,9 @@ class ProductController extends Auth
             $result = $this->model->trash($_POST['id']);
             
             if ($result == true) {
-                Session::addFlash('error',  ADD_TO_TRASH_SUCCESS($product['name']));
+                $action = "Move product[".$_POST['id']."] to trash";
+                $this->addLog($this->user['id'], $action);
+                Session::addFlash('success',  ADD_TO_TRASH_SUCCESS($product['name']));
                 return json(['message' => 'successfull']);
             }
            return json(['message' => 'error']);
@@ -254,10 +274,14 @@ class ProductController extends Auth
 
             $this->model->update($data, $_POST['id']);
 
+            $action = 'restock product[' . $_POST['id'] . ']: ' ;
+            $this->addLog($this->user['id'], $action);
+
             Session::addFlash('success',  __RESTOCK_MESSAGE_SUCCESS__);
             return json(['message' => 'successfull']);
         }
     }
+
 
     public function destroy()
     {
@@ -270,6 +294,10 @@ class ProductController extends Auth
             }
             $result = $this->model->delete($product, $_POST['id']);
             if ($result) {
+                
+                $action = 'destroy product[' . $_POST['id'] . ']: ' ;
+                $this->addLog($this->user['id'], $action);
+
                 Session::addFlash('success',  __DESTROY_SUCCESS__);
                 return json(['message' => 'successfull']);
             }
@@ -281,5 +309,15 @@ class ProductController extends Auth
         Session::addFlash('error',  __NOT_EXIST_METHOD__);
         return json(['message' => 'error']);
         
+    }
+
+    private  function addLog($id,$action)
+    {
+        $log = new \App\Models\Admin\Log;
+        $arr = [];
+        $arr['user'] = $id;
+        $arr['action'] = $action;              
+        $arr['created_at'] = date("Y-m-d H:i:s");
+        $log->insert($arr);
     }
 }

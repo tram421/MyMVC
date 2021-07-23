@@ -30,14 +30,14 @@ function ChangeToSlug(title) {
 * Result:           html list of next products (8 item next) of category has id in param
 * Call to:          route service/product to call ProductController and loadmore function
 */
-function loadMoreProduct(category) {
+function loadMoreProduct(category, order, set) {
 
     var page = parseInt($('#page').val()) + 1;
     var html = "";
     $.ajax({
       type: "POST",
       dataType: "JSON",
-      data: { page, category },
+      data: { page, category, order, set},
       url: "/services/product",
       success: function(result) {
         if (result.error == false) {
@@ -46,7 +46,9 @@ function loadMoreProduct(category) {
                 html += '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" >' +
                             '<div class="block2">'+
                                 '<div class="block2-pic hov-img0">'+
-                                    '<img src="'+ result.data[i].file +'" alt="IMG-PRODUCT">'+
+                                    '<img src="'+ 
+                                    result.data[i].file +
+                                    '" alt="IMG-PRODUCT">'+
                                     '<a onclick=" showMoreInfo(' + result.data[i].id + ')" style = "cursor:pointer"'+
                                         'class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">'+
                                         'Quick View'+

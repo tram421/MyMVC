@@ -28,8 +28,8 @@ class Product extends Model
     $condition = Helper::array_to_commaString($menu_id);
    
     if(!is_null($menu_id)) {
-        $sql = "SELECT * from $this->table where menu_id IN ($condition) order by $orderBy $order limit " . self::LIMIT;
-        
+        $sql = "SELECT * from `$this->table` where menu_id IN ($condition) order by `$orderBy` $order limit " . self::LIMIT;
+     
         if ($page !== NULL) {
             if($page > 0) {
                 $page--;

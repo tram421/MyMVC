@@ -5,7 +5,14 @@ echo '</pre>';
 
 ?>
 
-
+<form class="input-group m-2" action="/admin/orders/search" method="GET">
+    <input type="search" class="form-control form-control-sm" placeholder="Tìm kiếm theo mã đơn hàng" name="search_order">
+    <div class="input-group-append mr-4">
+        <button type="submit" class="btn btn-sm btn-default">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</form>
 
 <div class="card card-primary card-outline card-outline-tabs">
     <?php  if(!isset($delete)) { ?>

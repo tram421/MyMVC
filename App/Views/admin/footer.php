@@ -8,6 +8,7 @@
 
 <script src="/template/admin/ckeditor/ckeditor.js"></script>
 <script> CKEDITOR.replace('description');</script>
+<script> CKEDITOR.replace('factory_info');</script>
 <script src="/template/admin/js/main.js"></script>
 
 

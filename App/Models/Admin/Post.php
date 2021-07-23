@@ -34,4 +34,8 @@ class Post extends Model
         
         return $data;
     }
+    public function getMaxId()
+     {
+         return $this->fetch("SELECT MAX(`id`) as max from $this->table");
+     }
 }
