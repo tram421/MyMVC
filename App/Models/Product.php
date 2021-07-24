@@ -70,9 +70,15 @@ class Product extends Model
      return $this->fetchArray($sql);
  }
  public function searchName($string)
- {
-      
+ {      
      $sql = "SELECT * from $this->table where `name` LIKE '%$string%'";
+      
+     return $this->fetchArray($sql);
+
+ }
+ public function getField($field = 'id', $value = 0)
+ {      
+     $sql = "SELECT * from $this->table where `$field` = '$value'";
       
      return $this->fetchArray($sql);
 

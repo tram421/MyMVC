@@ -79,9 +79,11 @@ function loadMoreProduct(category, order, set) {
             html += "</div>";
                 $("#itemLoadMore").append(html);
              $("#page").val(page);
+       
         } else {
-            $("#itemLoadMore").append("<h4 style = 'text-align: center'><b>" + result.message + "</b></h4>");
-        }
+                 console.log(result.message);
+                 $("#itemLoadMore").append("<h4 style = 'text-align: center'><b>" + result.message + "</b></h4>");
+               }
       }
     });
 }

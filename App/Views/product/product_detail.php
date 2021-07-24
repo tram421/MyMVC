@@ -15,7 +15,7 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/danh-muc/<?= \Core\Helper::slug($product_detail['menu_name'])?>-id<?=$product_detail['menu_id']?>.html" class="stext-109 cl8 hov-cl1 trans-04">
 				<?= $product_detail['menu_name'] ?>
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -107,11 +107,17 @@
 						<!-- Block2 -->
 						<div class="block2 align-content-center">
 							<div class="block2-pic hov-img0 ">
-								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
+								 <img src="<?php 
+                                        if ($value['file'] == '') {
+                                            echo '/template/images/no-image.jpg';
+                                        }else if (file_exists(substr($value['file'],1 )) == false) {
+                                            echo '/template/images/no-image.jpg';
+                                        } else {
+                                            echo $value['file'] ;
+                                        }
+                                        
+                                    ?>" alt="IMG-PRODUCT">
 
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">

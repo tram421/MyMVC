@@ -150,11 +150,19 @@
 
        
                 </div>
-                
+                <?php if (isset($value['factory_info'])) { ?>
                  <div class="row factory mb-3">
                      <h3>Thông số kỹ thuật: </h3>
-                        <?= \Core\Helper::decodeSafe($value['factory_info']) ?>
+                        <?php
+                            if(isset($value['factory_info'])) {
+                                if ($value['factory_info'] != NULL) {
+                                    echo \Core\Helper::decodeSafe($value['factory_info']);
+                                }
+                            }
+                            
+                         ?>
                     </div>
+                    <?php } ?>
             </div>
             
         </div>

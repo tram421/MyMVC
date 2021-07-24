@@ -24,7 +24,8 @@ class MainController extends Controller
         $newProduct = $new->getNewest();
         $this->products = new Product;
         $saleProduct = $this->products->getSale();
-
+        $this->products = new Product;
+        $tiviSS = $this->products->getField('menu_id', 18);
         $this->loadView('main', [
             'title' => __HOME_PAGE__,
             'template' => "home",
@@ -32,7 +33,8 @@ class MainController extends Controller
             'feature' => $feature,
             'post' => $posts,
             'newest' => $newProduct,
-            'saleProduct' =>$saleProduct
+            'saleProduct' =>$saleProduct,
+            'tiviSamsung'  => $tiviSS
             ]);
     }
 }

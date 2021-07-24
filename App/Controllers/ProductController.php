@@ -31,15 +31,20 @@ class ProductController extends Controller
             // dd($order);
            
             $result = $this->model->getChild($category, $page, $order, $set);
-            foreach($result as $key=>$val) {
-                if(!file_exists(substr($val['file'],0,1))) $result[$key]['file'] = '/template/images/no-image.jpg';
-            }
+           
             if (!is_null($result)) {
+                foreach($result as $key=>$val) {
+                    if(!file_exists(substr($val['file'],1))) {
+                        $result[$key]['file'] = '/template/images/no-image.jpg';
+                       
+                    }
+                }
                 return json([
                     'error' => false,
                     'data' => $result
                 ]);
             } else {
+             
                 return json([
                     'error' => true,
                     'message' => 'Hết sản phẩm'

@@ -166,7 +166,7 @@
           <!-- Trang -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fas fa-pager"></i>
+              <i class="fas fa-users"></i>
               <p>
                 User
                 <i class="right fas fa-angle-left"></i>
@@ -181,6 +181,16 @@
               </li>
              
             </ul>
+          </li>
+          <!-- Mail -->
+          <li class="nav-item pointer "style = "cursor:pointer">
+            <a class="nav-link" href='/admin/mail/repair'>
+              <i class="fas fa-envelope"></i>
+              <p>
+                Gửi mail
+           
+              </p>
+            </a>          
           </li>
            <!-- Tài khoản -->
           <li class="nav-item pointer " onclick="logOut()" style = "cursor:pointer">

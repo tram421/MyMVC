@@ -6,7 +6,7 @@ class Post extends Model
     private $table = 'posts';
     public function getForSlide()
     {
-        $sql = "SELECT * from $this->table where is_delete = 0 order by id desc";
+        $sql = "SELECT * from $this->table where is_delete = 0 order by id desc limit 5";
         return $this->fetchArray($sql);
     }
     public function show($id = 0)

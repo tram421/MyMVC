@@ -1,5 +1,5 @@
 <?php
-namespace App\controllers\Admin;
+namespace App\Controllers\Admin;
 
 use App\Core\Auth;
 use App\Models\Admin\Menu;

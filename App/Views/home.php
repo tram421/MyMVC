@@ -1,14 +1,12 @@
-		
-
-	<!-- Slider -->
-	<?php 
+		<!-- Slider -->
+		<?php 
 	$slideView = new App\Controllers\SlideController;
 	$slideView->getSlideHTLM();
 	?>
 
 
-	<!-- Banner of category-->
-	<?php 
+		<!-- Banner of category-->
+		<?php 
 		#Gọi giao diện catergory top ra: chứa danh mục, tách riêng để tái sử dụng cho các trang sản phẩm khác
 		Core\Controller::loadView('categoryTop',[
 			'menusData' => $menusData
@@ -16,14 +14,14 @@
 	?>
 
 
-	<!-- Product -->
-	<section class="bg0 p-t-0 p-b-140">
-		<div class="container">
-			<div class="p-b-10">
-			</div>
+		<!-- Product -->
+		<section class="bg0 p-t-0 p-b-140">
+		    <div class="container">
+		        <div class="p-b-10">
+		        </div>
 
-			<div class="flex-w flex-sb-m p-b-52">
-				<!-- <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+		        <div class="flex-w flex-sb-m p-b-52">
+		            <!-- <div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
@@ -49,7 +47,7 @@
 					</button>
 				</div> -->
 
-				<!-- <div class="flex-w flex-c-m m-tb-10">
+		            <!-- <div class="flex-w flex-c-m m-tb-10">
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
@@ -62,9 +60,9 @@
 						Search
 					</div>
 				</div> -->
-				
-				<!-- Search product -->
-				<!-- <div class="dis-none panel-search w-full p-t-10 p-b-15">
+
+		            <!-- Search product -->
+		            <!-- <div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
@@ -74,8 +72,8 @@
 					</div>	
 				</div> -->
 
-				<!-- Filter -->
-				<!-- <div class="dis-none panel-filter w-full p-t-10">
+		            <!-- Filter -->
+		            <!-- <div class="dis-none panel-filter w-full p-t-10">
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
@@ -262,269 +260,371 @@
 						</div>
 					</div>
 				</div> -->
-			</div>
-			<!-- Related Products -->
-	<section class="sec-relate-product bg0 bg-light p-2">
-		<div class="container">
-			<div class="p-b-20">
-				<h4 class="ltext-101  cl5 txt-center">
-					Sản phẩm nổi bật
-				</h4>
-			</div>
+		        </div>
+		        <!-- Related Products -->
+		        <section class="sec-relate-product bg0 bg-light p-2">
+		            <div class="container">
+		                <div class="p-b-20">
+		                    <h4 class="ltext-101  cl5 txt-center">
+		                        Sản phẩm nổi bật
+		                    </h4>
+		                </div>
 
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
+		                <!-- Slide2 -->
+		                <div class="wrap-slick2">
+		                    <div class="slick2">
 
 
-                    <?php
+		                        <?php
                         if (!is_null($feature)) {
                             foreach ($feature as $key=>$value) {
                                 
                          
                     ?>
 
-					<div class="item-slick2 p-1 border m-2">
-						<!-- Block2 -->
-						<div class="block2 align-content-center">
-							<div class="block2-pic hov-img0 ">
-								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
+		                        <div class="item-slick2 p-1 border m-2 h-300">
+		                            <!-- Block2 -->
+		                            <div class="block2 align-content-center">
+		                                <div class="block2-pic hov-img0 ">
+		                                    <img src="<?php 
+                                        if ($value['file'] == '') {
+                                            echo '/template/images/no-image.jpg';
+                                        }else if (file_exists(substr($value['file'],1 )) == false) {
+                                            echo '/template/images/no-image.jpg';
+                                        } else {
+                                            echo $value['file'] ;
+                                        }
+                                        
+                                    ?>" alt="IMG-PRODUCT" class="w-50 m-auto">
 
-								<a  onclick="showMoreInfo(<?=$value['id']?>)" href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
+		                                    <a onclick="showMoreInfo(<?=$value['id']?>)" href="#"
+		                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+		                                        Quick View
+		                                    </a>
+		                                </div>
 
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l">
-									<a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
-										<?= $value['name'] ?>
-									</a>
+		                                <div class="block2-txt flex-w flex-t p-t-14">
+		                                    <div class="block2-txt-child1 flex-col-l">
+		                                        <a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html"
+		                                            class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+		                                            <?= $value['name'] ?>
+		                                        </a>
 
-									<del class="stext-105 cl3 m-auto">
-                                        <?= number_format($value['price'],0,".",","); ?> đ
-                                    </del>
-                                    <span class="stext-105 cl3 color-red mtext-104 m-auto">
-                                        <?= number_format($value['price_sale'],0,".",","); ?> đ
-                                    </span>
-								</div>
+		                                        <del class="stext-105 cl3 m-auto">
+		                                            <?= number_format($value['price'],0,".",","); ?> đ
+		                                        </del>
+		                                        <span class="stext-105 cl3 color-red mtext-104 m-auto">
+		                                            <?= number_format($value['price_sale'],0,".",","); ?> đ
+		                                        </span>
+		                                    </div>
 
-								<!-- <div class="block2-txt-child2 flex-r p-t-3">
+		                                    <!-- <div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 										<img class="icon-heart1 dis-block trans-04" src="/template/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/template/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
 								</div> -->
-							</div>
-						</div>
-					</div>
-                    <?php 
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <?php 
                        }
                         }
                     ?>
 
 
 
-				</div>
-			</div>
-		</div>
-	</section>
+		                    </div>
+		                </div>
+		            </div>
+		        </section>
 
-	<div class="line text-info">Khuyến mãi cực lớn, hàng hóa bao la. Điện thoại hotline: 0896653653 (CSKH) </div>
+		        <div class="line text-info">Khuyến mãi cực lớn, hàng hóa bao la. Điện thoại hotline: 0896653653 (CSKH) </div>
 
-	<section class="sec-relate-product p-2" style="background-color:#dfe0e6">
-		<div class="container">
-			<div class="p-b-20">
-				<h4 class="ltext-101  cl5 txt-center">
-					Sản phẩm mới nhất
-				</h4>
-			</div>
+		        <section class="sec-relate-product p-2" style="background-color:#dfe0e6">
+		            <div class="container">
+		                <div class="p-b-20">
+		                    <h4 class="ltext-101  cl5 txt-center">
+		                        Sản phẩm mới nhất
+		                    </h4>
+		                </div>
 
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
+		                <!-- Slide2 -->
+		                <div class="wrap-slick2">
+		                    <div class="slick2">
 
 
-                    <?php
+		                        <?php
                         if (!is_null($newest)) {
                             foreach ($newest as $key=>$value) {
                                 
                          
                     ?>
 
-					<div class="item-slick2 p-1 border m-2">
-						<!-- Block2 -->
-						<div class="block2 align-content-center">
-							<div class="block2-pic hov-img0 ">
-								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
+		                        <div class="item-slick2 p-1 border m-2 h-300">
+		                            <!-- Block2 -->
+		                            <div class="block2 align-content-center">
+		                                <div class="block2-pic hov-img0 ">
+		                                    <img src="<?php 
+												if ($value['file'] == '') {
+													echo '/template/images/no-image.jpg';
+												}else if (file_exists(substr($value['file'],1 )) == false) {
+													echo '/template/images/no-image.jpg';
+												} else {
+													echo $value['file'] ;
+												}
+												
+											?>" alt="IMG-PRODUCT" class="w-50 m-auto">
 
-								<a onclick="showMoreInfo(<?=$value['id']?>)" href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
+		                                    <a onclick="showMoreInfo(<?=$value['id']?>)" href="#"
+		                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+		                                        Quick View
+		                                    </a>
+		                                </div>
 
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l">
-									<a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
-										<?= $value['name'] ?>
-									</a>
+		                                <div class="block2-txt flex-w flex-t p-t-14">
+		                                    <div class="block2-txt-child1 flex-col-l">
+		                                        <a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html"
+		                                            class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+		                                            <?= $value['name'] ?>
+		                                        </a>
 
-									<del class="stext-105 cl3 m-auto">
-                                        <?= number_format($value['price'],0,".",","); ?> đ
-                                    </del>
-                                    <span class="stext-105 cl3 color-red mtext-104 m-auto">
-                                        <?= number_format($value['price_sale'],0,".",","); ?> đ
-                                    </span>
-								</div>
+		                                        <del class="stext-105 cl3 m-auto">
+		                                            <?= number_format($value['price'],0,".",","); ?> đ
+		                                        </del>
+		                                        <span class="stext-105 cl3 color-red mtext-104 m-auto">
+		                                            <?= number_format($value['price_sale'],0,".",","); ?> đ
+		                                        </span>
+		                                    </div>
 
-								<!-- <div class="block2-txt-child2 flex-r p-t-3">
+		                                    <!-- <div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 										<img class="icon-heart1 dis-block trans-04" src="/template/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/template/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
 								</div> -->
-							</div>
-						</div>
-					</div>
-                    <?php 
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <?php 
                        }
                         }
                     ?>
 
 
 
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Slide2 -->
-			<div class="wrap-slick1 boder pl-5 pr-5">
-				<div class="slick1" >
+		                    </div>
+		                </div>
+		            </div>
+		        </section>
+		        <!-- Slide2 -->
+				<section>
+					<div class="wrap-slick1 boder pl-5 pr-5 h-300">
+						<div class="slick1">
 
 
-                    <?php
-					// var_dump($post);
-                        if (!is_null($post)) {
-                            foreach ($post as $key=>$value) {
-                                
-                         
-                    ?>
-					
+							<?php
+						// var_dump($post);
+							if (!is_null($post)) {
+								foreach ($post as $key=>$value) {
+						?>
+							<div class="p-b-63 pr-5 pl-5 m-0">
 
-					<div class="p-b-63 pr-5 pl-5 m-0">
+								<div class="p-t-32">
+									<h4 class="p-b-15">
+										<a href="/post/id<?=$value['id']?>-slug<?=\Core\Helper::slug($value['title'])?>.html"
+											class="ltext-108 cl2 hov-cl1 trans-04 text-info">
+											<?= $value['title'] ?>
+										</a>
+									</h4>
 
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="/post/id<?=$value['id']?>-slug<?=\Core\Helper::slug($value['title'])?>.html" class="ltext-108 cl2 hov-cl1 trans-04 text-info">
-										<?= $value['title'] ?>
-									</a>
-								</h4>
+									<p class="stext-117 cl6"><?=\Core\Helper::decodeSafe($value['short_content']) ?></p>
+									<p class="stext-117 cl6">
+										<?php sprintf(\Core\Helper::decodeSafe(substr($value['description'],0,200))) ?>..... </p>
 
-								<p class="stext-117 cl6"><?=\Core\Helper::decodeSafe($value['short_content']) ?></p>
-								<p class="stext-117 cl6"><?= \Core\Helper::decodeSafe(substr($value['description'],0,200)) ?>..... </p>
+									<div class="flex-w flex-sb-m p-t-18">
+										<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+											<span>
+												<span class="cl4">By</span> Admin
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
 
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+											<span>
+												tag: <?= $value['category'] ?>
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+
+											<span>
+												public: <?= $value['created_at'] ?>
+											</span>
 										</span>
 
-										<span>
-											tag: <?= $value['category'] ?> 
-											<span class="cl12 m-l-4 m-r-6">|</span>
-										</span>
-
-										<span>
-											public: <?= $value['created_at'] ?>
-										</span>
-									</span>
-
+									</div>
 								</div>
 							</div>
+							<?php 
+						}
+							}
+						?>
+
+
+
 						</div>
-                    <?php 
-                       }
-                        }
-                    ?>
+					</div>
+				</section>
+		        <div class="p-b-20">
+		            <h4 class="ltext-101  cl5 txt-center">
+		                Sản phẩm giá sốc
+		            </h4>
+		        </div>
+
+		        <!-- Slide2 -->
+		        <div class="wrap-slick2">
+		            <div class="slick2">
 
 
-
-				</div>
-			</div>
-
-				<div class="p-b-20">
-				<h4 class="ltext-101  cl5 txt-center">
-					Sản phẩm giá sốc
-				</h4>
-			</div>
-
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
-
-
-                    <?php
+		                <?php
                         if (!is_null($saleProduct)) {
                             foreach ($saleProduct as $key=>$value) {
                                 
                          
                     ?>
 
-					<div class="item-slick2 p-1 border m-2">
-						<!-- Block2 -->
-						<div class="block2 align-content-center">
-							<div class="block2-pic hov-img0 ">
-								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
+		                <div class="item-slick2 p-1 border m-2 h-300">
+		                    <!-- Block2 -->
+		                    <div class="block2 align-content-center">
+		                        <div class="block2-pic hov-img0 ">
+									 <img src="<?php 
+                                        if ($value['file'] == '') {
+                                            echo '/template/images/no-image.jpg';
+                                        }else if (file_exists(substr($value['file'],1 )) == false) {
+                                            echo '/template/images/no-image.jpg';
+                                        } else {
+                                            echo $value['file'] ;
+                                        }
+                                        
+                                    ?>" alt="IMG-PRODUCT"class="w-50 m-auto">
+		                         
 
-								<a onclick="showMoreInfo(<?=$value['id']?>)" href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
+		                            <a onclick="showMoreInfo(<?=$value['id']?>)" href="#"
+		                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+		                                Quick View
+		                            </a>
+		                        </div>
 
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l">
-									<a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
-										<?= $value['name'] ?>
-									</a>
+		                        <div class="block2-txt flex-w flex-t p-t-14">
+		                            <div class="block2-txt-child1 flex-col-l">
+		                                <a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html"
+		                                    class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+		                                    <?= $value['name'] ?>
+		                                </a>
 
-									<del class="stext-105 cl3 m-auto">
-                                        <?= number_format($value['price'],0,".",","); ?> đ
-                                    </del>
-                                    <div class="stext-105 cl3 color-red mtext-104 m-auto">
-                                        <?= number_format($value['price_sale'],0,".",","); ?> đ 
-										<span class="stext-105 cl3 text-success color-blue stext-109 ml-3">
-											Giảm <?= number_format($value['percent'],1) ?> %
-										</span>
-                                    </div>
-									
-										
-								</div>
+		                                <del class="stext-105 cl3 m-auto">
+		                                    <?= number_format($value['price'],0,".",","); ?> đ
+		                                </del>
+		                                <div class="stext-105 cl3 color-red mtext-104 m-auto">
+		                                    <?= number_format($value['price_sale'],0,".",","); ?> đ
+		                                    <span class="stext-105 cl3 text-success color-blue stext-109 ml-3">
+		                                        Giảm <?= number_format($value['percent'],1) ?> %
+		                                    </span>
+		                                </div>
 
-						
-							</div>
-						</div>
-					</div>
-                    <?php 
+
+		                            </div>
+
+
+		                        </div>
+		                    </div>
+		                </div>
+		                <?php 
                        }
                         }
                     ?>
 
 
 
-				</div>
-			</div>
+		            </div>
+		        </div>
+					<div class="p-b-20">
+						<h4 class="ltext-101  cl5 txt-center">
+							Tivi Samsung
+						</h4>
+					</div>
+				<!-- Slide2 -->
+		        <div class="wrap-slick2">
+		            <div class="slick2">
 
-		</div>
 
-		
-		
-	</section>
+		                <?php
+                        if (!is_null($tiviSamsung)) {
+                            foreach ($tiviSamsung as $key=>$value) {
+                                
+                         
+                    ?>
 
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-	<?php
+		                <div class="item-slick2 p-1 border m-2 h-300">
+		                    <!-- Block2 -->
+		                    <div class="block2 align-content-center">
+		                        <div class="block2-pic hov-img0 ">
+									 <img src="<?php 
+                                        if ($value['file'] == '') {
+                                            echo '/template/images/no-image.jpg';
+                                        }else if (file_exists(substr($value['file'],1 )) == false) {
+                                            echo '/template/images/no-image.jpg';
+                                        } else {
+                                            echo $value['file'] ;
+                                        }
+                                        
+                                    ?>" alt="IMG-PRODUCT"class="w-50 m-auto">
+		                         
+
+		                            <a onclick="showMoreInfo(<?=$value['id']?>)" href="#"
+		                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+		                                Quick View
+		                            </a>
+		                        </div>
+
+		                        <div class="block2-txt flex-w flex-t p-t-14">
+		                            <div class="block2-txt-child1 flex-col-l">
+		                                <a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html"
+		                                    class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+		                                    <?= $value['name'] ?>
+		                                </a>
+
+		                                <del class="stext-105 cl3 m-auto">
+		                                    <?= number_format($value['price'],0,".",","); ?> đ
+		                                </del>
+		                                <div class="stext-105 cl3 color-red mtext-104 m-auto">
+		                                    <?= number_format($value['price_sale'],0,".",","); ?> đ
+		                                </div>
+
+
+		                            </div>
+
+
+		                        </div>
+		                    </div>
+		                </div>
+		                <?php 
+                       }
+                        }
+                    ?>
+
+
+
+		            </div>
+		        </div>
+
+		    </div>
+
+
+
+		</section>
+
+		<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+		    <div class="overlay-modal1 js-hide-modal1"></div>
+		    <?php
 
 		include __VIEW__.'/product/modal_product.php';
 	?>
-	</div>
+		</div>

@@ -54,6 +54,9 @@ $routes['admin/user/list']   = 'App\Controllers\Admin\UserController@list';
 $routes['admin/user/updateUser']   = 'App\Controllers\Admin\UserController@updateUser';
 $routes['admin/user/edit/{id}']   = 'App\Controllers\Admin\UserController@edit';
 $routes['admin/user/showOrder/{id}']   = 'App\Controllers\Admin\UserController@showOrder';
+$routes['admin/mail/repair']   = 'App\Controllers\Admin\MailController@sendUser';
+$routes['admin/mail/send']   = 'App\Controllers\Admin\MailController@send';
+
 //Danh mục
 $routes['admin/menus/add']                      = 'App\Controllers\Admin\MenuController@create';
 $routes['admin/menus/store']                    = 'App\Controllers\Admin\MenuController@store';
