@@ -114,3 +114,6 @@ $routes['admin/post/trashlist'] = 'App\Controllers\Admin\PostController@trashLis
 //page
 $routes['admin/page/{slug}'] = 'App\Controllers\Admin\PageController@manage';
 $routes['admin/page/update'] = 'App\Controllers\Admin\PageController@update';
+//image
+$routes['admin/album/list/addProduct'] = 'App\Controllers\Admin\AlbumController@addProduct';
+$routes['admin/album/list'] = 'App\Controllers\Admin\AlbumController@list';

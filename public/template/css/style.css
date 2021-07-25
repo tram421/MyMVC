@@ -147,3 +147,19 @@ a>span{
 .factory div{
     margin-left: 15px;
 }
+/* z index */
+.up{
+    z-index: 999;
+}
+.down{
+    z-index: 1;
+}
+#ekkoLightbox-567{
+    pointer-events: none;
+}
+.modal-dialog{
+    pointer-events: none;
+}
+#modal-album{
+    pointer-events: none;
+}

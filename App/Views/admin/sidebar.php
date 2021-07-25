@@ -192,6 +192,16 @@
               </p>
             </a>          
           </li>
+          <!-- Bộ sưu tập -->
+          <li class="nav-item pointer "style = "cursor:pointer">
+            <a class="nav-link" href='/admin/album/list'>
+            <i class="nav-icon far fa-image"></i>
+              <p>
+                Bộ sưu tập
+           
+              </p>
+            </a>          
+          </li>
            <!-- Tài khoản -->
           <li class="nav-item pointer " onclick="logOut()" style = "cursor:pointer">
             <a class="nav-link">

@@ -402,6 +402,79 @@ function logOut(id = 0)
 // }
 
 
+function showPic($url = "") {
+  $("#ekkoLightbox-567").removeClass("down");
+  $("#ekkoLightbox-567").removeClass("hide");
+  $("#ekkoLightbox-567").addClass("show");
+  $("#ekkoLightbox-567").addClass("up");
+  $(".ekko-lightbox-item").addClass("show");
+  $("#modal-album").attr('src', $url);
+  $("#nameFile").html($url);
+  console.log('nhấn');
+}
+$('.close').click(function(){
+  $("#ekkoLightbox-567").removeClass("up");
+  $("#ekkoLightbox-567").removeClass("show");
+  $("#ekkoLightbox-567").addClass("hide");
+  $("#ekkoLightbox-567").addClass("down");
+  $(".ekko-lightbox-item").removeClass('show');
+});
+// $("#ekkoLightbox-567").click(function(e) {
+//   e.stopPropagation();
+// });
+function addImageToProduct()
+{
+  console.log('vào');
+  $.ajax({
+    type: "POST",
+    typeData: "JSON",
+    url: "/admin/album/list/addProduct",
+    success: function(result) {
+      
+      html =
+        '<div id="ekkoLightbox-567" class="ekko-lightbox modal fade in show up" tabindex="-1" role="dialog" aria-modal="true"' +
+              'style="padding-right: 16px; display: block; ">' +
+            '<div class="modal-dialog" role="document" style="display: block; flex: 1 1 1px; max-width: 80%; max-height: 80%; overflow: scroll;">' +
+              '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                    '<h4 class="modal-title" id="nameFile">Bộ sưu tập</h4>' +
+                    '<button type="button" class="close" data-dismiss="modal"' +
+                        ' aria-label="Close" onclick="closeAlbum()"><span aria-hidden="true">×</span></button>' +
+                  '</div>'+
+                  '<div class="row">' ;
+                  for (let x in result) {
+        html += '<div class="m-2 border p-2">'+
+                '<a style="cursor:pointer" data-toggle="lightbox" data-title="sample 1 - white" onclick="selectImage(\''+result[x]+'\')">'+
+                    '<img src="'+result[x]+'" class="img-fluid" alt="white sample"'+
+                        'style="width: 200px; height: 200px">'+
+                '</a>'+
+            '</div>';
+                  }
 
+        html += '<div class="modal-footer hide" style="display: none;">&nbsp;</div>' + "</div>" + "</div>" + "</div>" + "</div>";
 
+      $("#album-modal").html(html);
+    }
+  });
+  
+}
+function selectImage(url = '')
+{
+   $("#ekkoLightbox-567").removeClass("up");
+   $("#ekkoLightbox-567").removeClass("show");
+   $("#ekkoLightbox-567").addClass("hide");
+   $("#ekkoLightbox-567").addClass("down");
+   $(".ekko-lightbox-item").removeClass("show");
+   const html = '<img src="' + url + '" width="100px">';
+   $("#thumb").html(html);
+   $("#url_file").val( url);
+}
+function closeAlbum()
+{
+  $("#ekkoLightbox-567").removeClass("up");
+  $("#ekkoLightbox-567").removeClass("show");
+  $("#ekkoLightbox-567").addClass("hide");
+  $("#ekkoLightbox-567").addClass("down");
+  $(".ekko-lightbox-item").removeClass("show");
+}
 

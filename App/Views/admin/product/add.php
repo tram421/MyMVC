@@ -60,7 +60,8 @@
             <label for="">Ảnh Đại Diện</label>
             <input type="file" id="file" class="form-control">
             <div id="thumb"></div>
-            <input type="hidden" name="file" value="" id="url_file">
+            <input type="hidden" name="file" value="" id="url_file" placeholder="Đường dẫn hình ảnh" class="mt-1 col-12">
+            <a class="btn btn-success mt-2" onclick="addImageToProduct()">Chọn trong bộ sưu tập</a>
         </div>
         <div class="">
             <label for="" class="mb-2"> Feature: </label>
@@ -89,4 +90,4 @@
         <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
     </div>
 </form>
-
+<div id="album-modal"></div>

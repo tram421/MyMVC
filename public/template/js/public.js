@@ -1,3 +1,4 @@
+
 function ChangeToSlug(title) {
   var slug;
 
@@ -265,7 +266,5 @@ function deleteItemCart(id = 0)
         }
     });
 }
-function searche()
-{
-    console.log('tìm kiếm');
-}
+
+
