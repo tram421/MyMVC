@@ -9,7 +9,7 @@
             
  
     </div>
-    <div class="container">
+    <div class="container mt-5 mb-5">
         <div class="col-10">
                  <!-- Slide2 -->
 			<div class="wrap-slick2">
@@ -29,14 +29,12 @@
 							<div class="block2-pic hov-img0 ">
 								<img class = "w-50 m-auto" src="<?= $value['file'] ?>" alt="IMG-PRODUCT">
 
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
+								
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l">
-									<a href="product-detail.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+									<a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
 										<?= $value['name'] ?>
 									</a>
 

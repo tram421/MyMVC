@@ -11,9 +11,9 @@ class AlbumController extends Auth
 
     public function list()
     {
-        $dir = $_SERVER["DOCUMENT_ROOT"]."public/uploads/";
+        $dir = $_SERVER["DOCUMENT_ROOT"]."uploads/";
         // dd(is_dir($_SERVER["DOCUMENT_ROOT"]."public/uploads/2021/07/23/gd05.jpg"));
-        $file = $this->getpath();
+        $file = $this->getpath($dir);
         // dd($this->getpath($dir));
         // dd($_GET);
         if(isset($_GET['order'])) {
@@ -29,14 +29,16 @@ class AlbumController extends Auth
     }
      public function addProduct()
     {
-        $file = $this->getpath();
+        $dir = $_SERVER["DOCUMENT_ROOT"]."uploads/";
+        // dd($dir);
+        $file = $this->getpath($dir);
         $file = array_reverse($file);
         return json($file);
     }
 /**
  * This function return path of all image
  */
-    public function getpath($dir = 'D:/laragon/www/login/public/uploads/')
+    public function getpath($dir = 'D:/laragon/www/mekolink/public/uploads/')
     {        
         
         $year= [];

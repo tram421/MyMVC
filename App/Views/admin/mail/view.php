@@ -56,7 +56,7 @@
                                     
                                 </tr>
                                 
-                                <input type="text" name ='nameReceiver' value="<?= $value['name']?>">
+                                <input type="hidden" name ='nameReceiver' value="<?= $value['name']?>">
                             <?php }
                                 } else {
                             ?>    

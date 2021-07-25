@@ -87,7 +87,7 @@ class UserController extends Controller
                 Session::addFlash('error', 'Email Không tồn tại');
                 return Helper::redirect('/user/login');
             }
-            if($result["permision"] != 'user' || $result["permision"] != 'admin') {
+            if($result["permision"] != 'user' && $result["permision"] != 'admin') {
                 Session::addFlash('error', 'Email Không tồn tại (101)');
                 return Helper::redirect('/user/login');
             }

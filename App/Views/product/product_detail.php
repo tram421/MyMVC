@@ -122,7 +122,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l">
-									<a href="product-detail.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
+									<a href="/san-pham/<?=\Core\Helper::slug($value['name'])?>-id<?=$value['id']?>.html" class="mtext-101 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 m-auto text-center">
 										<?= $value['name'] ?>
 									</a>
 

@@ -109,8 +109,10 @@ function showMoreInfo(id)
 
             if (result.error == false) {
                 $("#modal_name").html(result.data.name);
-                $("#modal_price").html(result.data.price + ' đ');
-                $("#modal_price_sale").html(result.data.price_sale + " đ");
+                var price = parseInt(result.data.price);
+                $("#modal_price").html(price.toLocaleString(undefined, { minimumFractionDigits: 0 }) + " đ");
+                let price_sale = parseInt(result.data.price_sale);
+                $("#modal_price_sale").html(price_sale.toLocaleString(undefined, { minimumFractionDigits: 0 }) + " đ");
                 $("#modal_content").html(result.data.content);
                 $("#modal_id").val(id);
 

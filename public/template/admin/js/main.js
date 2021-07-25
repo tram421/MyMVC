@@ -91,7 +91,7 @@ function sendRequest($message = '', id = 0, url = "") {
       url: url,
       success: function(result) {  
         if (result.mess != 'success') {
-          alert("Tác vụ không thành công, Vui lòng tải lại trang và thử lại");    
+          location.reload(); 
         } else {
           location.reload();
           

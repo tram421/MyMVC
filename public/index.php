@@ -21,4 +21,5 @@ use Firebase\JWT\JWT;
 // $decoded = JWT::decode($jwt, $key, array('HS256'));
 // dd($decoded);
 // dd(__DIR__);
+// dd(password_hash('123456', PASSWORD_DEFAULT));
 $app = new App;
